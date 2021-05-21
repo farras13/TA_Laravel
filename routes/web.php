@@ -22,6 +22,8 @@ Route::post('login', [LoginController::class, 'proslog']);
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/Pegawai', [PegawaiController::class, 'index'])->name('pegawai');
+    Route::get('/FormPegawai', [PegawaiController::class, 'form'])->name('formpegawai');
 
     Route::get('persilangan', [PersilanganController::class, 'index'])->name('persilangan');
     Route::get('persilangan/form', [PersilanganController::class, 'formT']);
