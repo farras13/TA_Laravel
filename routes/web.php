@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PersilanganController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +16,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('login', [LoginController::class, 'proslog']);
+
+Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+
+    Route::get('persilangan', [PersilanganController::class, 'index'])->name('persilangan');
+    Route::get('persilangan/form', [PersilanganController::class, 'formT']);
+    Route::get('persilangan/form-edit/{id}', [PersilanganController::class, 'formE']);
+    Route::post('persilangan/add', [PersilanganController::class, 'tambah']);
+    Route::post('persilangan/edit/{id}', [PersilanganController::class, 'rubah']);
+    Route::get('persilangan/hapus/{id}', [PersilanganController::class, 'hapus']);
+
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+});
