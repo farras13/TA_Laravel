@@ -8,10 +8,10 @@ class PegawaiController extends Controller
 {
     public function index()
     {
-        return view('Pegawai');
+        return view('Pegawai/Pegawai');
     }
     public function form()
     {
-        return view('FormPegawai');
+        return view('Pegawai/FormPegawai');
     }
 }

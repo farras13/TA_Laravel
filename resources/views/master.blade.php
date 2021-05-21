@@ -110,9 +110,15 @@
                         </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./index.html" class="nav-link">
+                            <a href="{{ url('Pegawai') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data Pegawai</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('FormPegawai') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Form Pegawai</p>
                             </a>
                         </li>
                         <li class="nav-item">

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PersilanganController;
 use Illuminate\Support\Facades\Route;
 
