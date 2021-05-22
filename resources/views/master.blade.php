@@ -143,7 +143,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="pages/examples/login.html" class="nav-link">
+                                <a href="{{ route('gen') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Gen</p>
                                 </a>

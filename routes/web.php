@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GenController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KebunController;
 use App\Http\Controllers\LoginController;
@@ -39,12 +40,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('persilangan/hapus/{id}', [PersilanganController::class, 'hapus']);
 
     // Gen
-    Route::get('gen', [HomeController::class, 'gen'])->name('gen');
-    Route::get('gen/tambah', [HomeController::class, 'create']);
-    Route::post('gen/add', [HomeController::class, 'add']);
-    Route::get('gen/edit/{id}', [HomeController::class, 'edit']);
-    Route::post('gen/update/{id}', [HomeController::class, 'update']);
-    Route::get('gen/destroy/{id}', [HomeController::class, 'destroy']);
+    Route::get('gen', [GenController::class, 'index'])->name('gen');
+    Route::get('gen/tambah', [GenController::class, 'create']);
+    Route::post('gen/add', [GenController::class, 'add']);
+    Route::get('gen/edit/{id}', [GenController::class, 'edit']);
+    Route::post('gen/update/{id}', [GenController::class, 'update']);
+    Route::get('gen/destroy/{id}', [GenController::class, 'destroy']);
 
     // proses kebun
     Route::get('kebun/proses', [KebunController::class, 'index'])->name('proses');
