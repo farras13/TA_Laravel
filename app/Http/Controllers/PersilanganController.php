@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class PersilanganController extends Controller
 {
+
     public function index()
     {
         $persilangan = Persilangan::all();
@@ -36,7 +37,8 @@ class PersilanganController extends Controller
             'seed'          => 'required|string',
             'pollen'        => 'required|string'
         ]);
-        $x = DB::table('persilangan')->orderBy('tanggal','desc', 'kodePersilangan', 'desc')->first();
+
+        $x = DB::table('persilangan')->orderBy('created_at','desc')->first();
 	    $count = strlen($x->kodePersilangan);
     		if ($count < 5) {
     			$yes = substr("" . $x->kodePersilangan, 0, 1);
@@ -65,13 +67,27 @@ class PersilanganController extends Controller
              ->with('success', 'Data Berhasil Ditambahkan');
     }
 
-    public function rubah(Request $request)
+    public function rubah(Request $request, $id)
     {
-        # code...
+        //melakukan validasi data
+        $request->validate([
+            'seed' => 'required',
+            'pollen' => 'required'
+        ]);
+
+        //fungsi eloquent untuk mengupdate data inputan kita
+        Persilangan::find($id)->update($request->all());
+
+        //jika data berhasil diupdate, akan kembali ke halaman utama
+        return redirect()->route('persilangan')
+            ->with('success', 'Data Berhasil Diupdate');
     }
 
-    public function hapus(Request $request)
+    public function hapus($id)
     {
-        # code...
+        //fungsi eloquent untuk menghapus data
+        Persilangan::find($id)->delete();
+        return redirect()->route('persilangan')
+            ->with('success', 'Data Berhasil Dihapus');
     }
 }

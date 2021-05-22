@@ -43,7 +43,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form action="{{ url('') }}" method="post">
+                    <form action="{{ url('persilangan/add') }}" method="post">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">

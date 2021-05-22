@@ -22,10 +22,14 @@ Route::post('login', [LoginController::class, 'proslog']);
 
 Route::group(['middleware' => 'auth'], function () {
 
+    // Dashboard
     Route::get('/', [HomeController::class, 'index'])->name('home');
+
+    // Pegawai
     Route::get('/Pegawai', [PegawaiController::class, 'index'])->name('pegawai');
     Route::get('/FormPegawai', [PegawaiController::class, 'form'])->name('formpegawai');
 
+    // Persilangan
     Route::get('persilangan', [PersilanganController::class, 'index'])->name('persilangan');
     Route::get('persilangan/form', [PersilanganController::class, 'formT']);
     Route::get('persilangan/form-edit/{id}', [PersilanganController::class, 'formE']);
@@ -33,5 +37,23 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('persilangan/edit/{id}', [PersilanganController::class, 'rubah']);
     Route::get('persilangan/hapus/{id}', [PersilanganController::class, 'hapus']);
 
+    // Gen
+
+    // ProsesBuah
+
+    // PanenBuah
+
+    // Trans
+
+    // Trans2
+
+    // Trans3
+
+    // Internal
+
+    // Eksternal
+    
+
+    // logout
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });

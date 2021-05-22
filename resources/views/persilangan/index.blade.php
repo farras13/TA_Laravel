@@ -18,6 +18,17 @@
               <li class="breadcrumb-item active">DataTables</li>
             </ol>
           </div>
+          <div class="col-sm-7"> </div>
+          <div class="col-sm-5">
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <p>{{ $message }}</p>
+                </div>
+            @endif
+          </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -60,7 +71,35 @@
                                     <td> {{ $per->created_at }} </td>
                                     <td> {{ $per->tanaman->name }} </td>
                                     <td> {{ $per->tanamann->name }} </td>
-                                    <td> {{ $per->status_trans }} </td>
+                                    <td>
+                                        @if ($per->status_trans3 == 3 )
+                                            Tanpa Keterangan
+                                        @elseif ($per->status_pk == 2 )
+                                            Gagal Pada Proses Awal
+                                        @elseif ($per->status_pb == 2 && $per->status_pk == 1)
+                                            Gagal Pada Proses Panen
+                                        @elseif ($per->status_trans == 2 && $per->status_pb == 1)
+                                            Gagal Pada Proses Trans1
+                                        @elseif ($per->status_trans2 == 2 && $per->status_trans == 1)
+                                            Gagal Pada Proses Trans2
+                                        @elseif ($per->status_trans3 == 2 && $per->status_trans2 == 1)
+                                            Gagal Pada Proses Trans3
+                                        @elseif ($per->status_trans3 == 1 && $per->status_trans2 == 1)
+                                            Persilangan Berhasil
+                                        @elseif ($per->status_trans3 == 0 && $per->status_trans2 == 1)
+                                            Masih Proses Trans 3
+                                        @elseif ($per->status_trans2 == 0 && $per->status_trans == 1)
+                                            Masih Proses Trans 2
+                                        @elseif ($per->status_trans == 0 && $per->status_pb == 1)
+                                            Masih Proses Trans 1
+                                        @elseif ($per->status_pb == 0 && $per->status_pk == 1)
+                                            Masih Proses Panen Buah
+                                        @elseif ($per->status_pk == 0 )
+                                            Masih Proses Awal
+
+                                        @endif
+                                        {{-- {{ $per->status_trans }} --}}
+                                    </td>
                                     <td>
                                         @if (Auth::user()->role == 2)
                                             <a class="nav-link" data-toggle="dropdown" href="#">
@@ -68,11 +107,11 @@
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                                                 <div class="dropdown-divider"></div>
-                                                <a href="{{ url('persilangan/edit', [$per->kodePersilangan]) }}" class="dropdown-item">
+                                                <a href="{{ url('persilangan/form-edit', [$per->kodePersilangan]) }}" class="dropdown-item">
                                                     <i class="fas fa-pen"></i> Edit
                                                 </a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="{{ url('persilangan/destroy', [$per->kodePersilangan]) }}" class="dropdown-item">
+                                                <a href="{{ url('persilangan/hapus', [$per->kodePersilangan]) }}" class="dropdown-item">
                                                     <i class="fas fa-eraser"></i> Hapus
                                                 </a>
                                             </div>
