@@ -37,4 +37,14 @@ class Persilangan extends Model
         return $this->belongsTo('App\Models\tanaman', 'pollen');
     }
 
+    public function panen()
+    {
+        return $this->hasOne('App\Models\panen');
+    }
+
+    public function proses()
+    {
+        return $this->hasOne('App\Models\proses');
+    }
+
 }

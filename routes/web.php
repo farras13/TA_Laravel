@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KebunController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PersilanganController;
@@ -38,21 +39,57 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('persilangan/hapus/{id}', [PersilanganController::class, 'hapus']);
 
     // Gen
+    Route::get('gen', [HomeController::class, 'gen'])->name('gen');
+    Route::get('gen/tambah', [HomeController::class, 'create']);
+    Route::post('gen/add', [HomeController::class, 'add']);
+    Route::get('gen/edit/{id}', [HomeController::class, 'edit']);
+    Route::post('gen/update/{id}', [HomeController::class, 'update']);
+    Route::get('gen/destroy/{id}', [HomeController::class, 'destroy']);
 
-    // ProsesBuah
+    // proses kebun
+    Route::get('kebun/proses', [KebunController::class, 'index'])->name('proses');
+    Route::get('kebun/proses/tambah', [KebunController::class, 'create']);
+    Route::post('kebun/proses/add', [KebunController::class, 'add']);
+    Route::get('kebun/proses/edit/{id}', [KebunController::class, 'edit']);
+    Route::post('kebun/proses/update/{id}', [KebunController::class, 'update']);
+    Route::get('kebun/proses/destroy/{id}', [KebunController::class, 'destroy']);
 
-    // PanenBuah
+    // panen kebun
+    Route::get('kebun/panen', [KebunController::class, 'panen'])->name('panen');
+    Route::get('kebun/panen/tambah', [KebunController::class, 'createP']);
+    Route::post('kebun/panen/add', [KebunController::class, 'addP']);
+    Route::get('kebun/panen/edit/{id}', [KebunController::class, 'editP']);
+    Route::post('kebun/panen/update/{id}', [KebunController::class, 'updateP']);
+    Route::get('kebun/panen/destroy/{id}', [KebunController::class, 'destroyP']);
 
-    // Trans
+    // trans 1
+    Route::get('trans', [LabController::class, 'index'])->name('trans');
+    Route::get('trans/tambah', [LabController::class, 'create']);
+    Route::post('trans/add', [LabController::class, 'add']);
+    Route::get('trans/edit/{id}', [LabController::class, 'edit']);
+    Route::post('trans/update/{id}', [LabController::class, 'update']);
+    Route::get('trans/destroy/{id}', [LabController::class, 'destroy']);
 
-    // Trans2
+    // trans 2
+    Route::get('trans2', [LabController::class, 'trans2'])->name('trans2');
+    Route::get('trans2/tambah', [LabController::class, 'create2']);
+    Route::post('trans2/add', [LabController::class, 'add2']);
+    Route::get('trans2/edit/{id}', [LabController::class, 'edit2']);
+    Route::post('trans2/update/{id}', [LabController::class, 'update2']);
+    Route::get('trans2/destroy/{id}', [LabController::class, 'destroy2']);
 
-    // Trans3
+    // trans 3
+    Route::get('trans3', [LabController::class, 'trans3'])->name('trans3');
+    Route::get('trans3/tambah', [LabController::class, 'create3']);
+    Route::post('trans3/add', [LabController::class, 'add3']);
+    Route::get('trans3/edit/{id}', [LabController::class, 'edit3']);
+    Route::post('trans3/update/{id}', [LabController::class, 'update3']);
+    Route::get('trans3/destroy/{id}', [LabController::class, 'destroy3']);
 
     // Internal
 
     // Eksternal
-    
+
 
     // logout
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

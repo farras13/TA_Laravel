@@ -200,13 +200,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                        <a href="./index.html" class="nav-link">
+                        <a href="{{ route('proses') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Proses Buah</p>
                         </a>
                         </li>
                         <li class="nav-item">
-                        <a href="./index2.html" class="nav-link">
+                        <a href="{{ route('panen') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Panen Buah</p>
                         </a>
@@ -224,19 +224,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                        <a href="./index.html" class="nav-link">
+                        <a href="{{ route('trans') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Trans 1</p>
                         </a>
                         </li>
                         <li class="nav-item">
-                        <a href="./index2.html" class="nav-link">
+                        <a href="{{ route('trans2') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Trans 2</p>
                         </a>
                         </li>
                         <li class="nav-item">
-                        <a href="./index2.html" class="nav-link">
+                        <a href="{{ route('trans3') }}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Trans 3</p>
                         </a>
