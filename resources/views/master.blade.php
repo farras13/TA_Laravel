@@ -186,7 +186,7 @@
                     <li class="nav-item">
                     <a href="{{ route('persilangan') }}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
-                        <p> Data Persilangan</p>
+                        <p>Persilangan</p>
                     </a>
                     </li>
 
