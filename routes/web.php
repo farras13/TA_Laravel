@@ -3,6 +3,7 @@
 use App\Http\Controllers\GenController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KebunController;
+use App\Http\Controllers\LabController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\PersilanganController;

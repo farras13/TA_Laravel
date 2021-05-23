@@ -79,7 +79,8 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary float-right ml-3">Submit</button>
-                        <button type="submit" class="btn btn-danger float-right">Cancel</button>
+                        <a href="{{ route('persilangan') }}" class="btn btn-danger float-right">Cancel</a>
+
                     </form>
                     <!-- /.row -->
                 </div>

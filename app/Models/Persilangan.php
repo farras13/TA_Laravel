@@ -47,4 +47,18 @@ class Persilangan extends Model
         return $this->hasOne('App\Models\proses');
     }
 
+    public function trans()
+    {
+        return $this->hasOne('App\Models\trans');
+    }
+
+    public function trans2()
+    {
+        return $this->hasOne('App\Models\trans2');
+    }
+
+    public function trans3()
+    {
+        return $this->hasOne('App\Models\trans3');
+    }
 }
