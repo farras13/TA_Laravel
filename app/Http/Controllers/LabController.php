@@ -195,6 +195,96 @@ class LabController extends Controller
         return redirect()->route('trans2')
             ->with('success', 'Data Berhasil Dihapus');
     }
+
+    // trans 3
+    public function trans3()
+    {
+       $data = trans3::all();
+       return view('lab.3.index', compact('data'));
+    }
+    public function create3()
+    {
+        $silang = Persilangan::all();
+        $trans = trans2::orderBy('id_persilangan', 'desc')->get();
+        return view('lab.3.tambah', compact('silang', 'trans'));
+    }
+
+    public function getData($id=0){
+
+    	// Fetch Employees by Departmentid
+        $empData['data'] = Trans2::select('*')
+        			->where('id_persilangan',$id)
+        			->get();
+
+        return response()->json($empData);
+
+    }
+
+    public function add3(Request $request)
+    {
+        $request->validate([
+            'persilangan' => 'required',
+            'status' => 'required',
+        ]);
+
+        trans3::create([
+            'id_persilangan' => $request->persilangan,
+            'status' => $request->status,
+            'target' => $request->target,
+            'botolT2' => $request->jb,
+            'stok' => $request->stok,
+            'kontam' => $request->kontam,
+            'keterangan' => $request->ket,
+            'idAuth' => Auth::user()->id,
+            'tgl_pengerjaan' => $request->tgl,
+        ]);
+
+        $edit = ['status_trans3' => $request->status, ];
+        $id = $request->persilangan;
+        Persilangan::find($id)->update($edit);
+
+        return redirect()->route('trans3')
+            ->with('success', 'Data Berhasil Ditambahkan');
+    }
+
+    public function edit3($id)
+    {
+        $data = trans3::find($id);
+        return view('lab.3.edit', compact('data'));
+    }
+
+    public function update3(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required',
+        ]);
+        $data = [
+            'status' => $request->status,
+            'target' => $request->target,
+            'botolT2' => $request->jb,
+            'stok' => $request->stok,
+            'kontam' => $request->kontam,
+            'keterangan' => $request->ket
+        ];
+
+        trans3::find($id)->update($data);
+        $edit = ['status_trans3' => $request->status, ];
+        $core =  trans3::find($id);
+        Persilangan::find($core->id_persilangan)->update($edit);
+
+        return redirect()->route('trans3')
+            ->with('success', 'Data Berhasil Di edit');
+    }
+
+    public function destroy3($id)
+    {
+        trans3::find($id)->delete();
+        $core =  trans3::find($id);
+        $edit = ['status_trans3' => 0,];
+        Persilangan::find($core->id_persilangan)->update($edit);
+        return redirect()->route('trans3')
+            ->with('success', 'Data Berhasil Dihapus');
+    }
 }
 
 

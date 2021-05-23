@@ -61,8 +61,20 @@
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
-                                <label for="jb">Jumlah botol berhasil</label>
-                                <input type="number" name="jb" id="jb" class="form-control" min="0" value="{{ $data->jumlah_botol }}">
+                                <label for="target">Target</label>
+                                <input type="number" name="target" id="target" class="form-control" min="0" value="{{ $data->target }}">
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="jb">Jumlah Botol </label>
+                                <input type="number" name="jb" id="jb" class="form-control" min="0" value="{{ $data->botolT2 }}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="stok">Stok</label>
+                                <input type="number" name="stok" id="stok" class="form-control" min="0" value="{{ $data->stok }}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="kontam">kontam</label>
+                                <input type="number" name="kontam" id="kontam" class="form-control" min="0" value="{{ $data->kontam }}">
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="status">status</label>
@@ -71,33 +83,9 @@
                                     <option value="2" {{ $data->status == 2 ? 'selected' : '' }}>Gagal</option>
                                 </select>
                             </div>
-                            <div class="col-md-12 mb-3" >
+                            <div class="col-md-12 mb-3">
                                 <label for="ket">Keterangan</label>
                                 <textarea class="form-control" name="ket" id="ket" cols="15" rows="10">{{ $data->keterangan }}</textarea>
-                            </div>
-                            <br><br>
-                            <div class="col-md-6 mb-3" id="nkt">
-                                <label for="kt">kode tanaman</label>
-                                <input type="text" name="kt" id="kt" class="form-control" value="{{ $data->persilangan->calon_kode }}">
-                            </div>
-                            <div class="col-md-6 mb-3" id="nnt">
-                                <label for="nt">nama tanaman</label>
-                                <input type="text" name="nt" id="nt" class="form-control" value="{{ $data->persilangan->calon_nama }}">
-                            </div>
-                            <div class="col-md-6 mb-3" id="ngt">
-                                <label for="gt">gen tanaman</label>
-                                <select name="gt" id="gt" class="form-control">
-                                    @foreach ($gen as $g)
-                                        <option value="{{ $g->idGen }}" {{ $data->persilangan->calon_gen == $g->idGen ? 'selected' : '' }}>{{ $g->gen }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3" id="njk">
-                                <label for="jk">seed / pollen</label>
-                                <select name="jk" id="jk" class="form-control">
-                                    <option value="seed" {{ $data->persilangan->calon_jk == "seed" ? 'selected' : '' }}>Seed</option>
-                                    <option value="pollen" {{ $data->persilangan->calon_jk == "pollen" ? 'selected' : '' }}>pollen</option>
-                                </select>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary float-right ml-3">Submit</button>
@@ -135,55 +123,81 @@
 
     $(document).ready(function(){
 
-        var sts = $('#status').val();
+        $('#t3').change(function(){
 
-            if (sts == 1) {
+        // Department id
+        var id = $(this).val();
 
-                $('#nkt').show();
-                $('#nnt').show();
-                $('#ngt').show();
-                $('#njk').show();
-                document.getElementById("kt").required = true;
-                document.getElementById("nt").required = true;
-                document.getElementById("gt").required = true;
-                document.getElementById("jk").required = true;
+        // AJAX request
+        $.ajax({
+        url: 'getData/'+id,
+        type: 'get',
+        dataType: 'json',
+        success: function(response){
 
-            }else{
-
-                $('#nkt').hide();
-                $('#nnt').hide();
-                $('#ngt').hide();
-                $('#njk').hide();
-                document.getElementById("kt").required = false;
-                document.getElementById("nt").required = false;
-                document.getElementById("gt").required = false;
-                document.getElementById("jk").required = false;
+            var len = 0;
+            if(response['data'] != null){
+            len = response['data'].length;
             }
 
-        $('#status').change(function(){
-            var sts = $(this).val();
+            if(len > 0){
+            // Read data and create <option >
+                var stok = response['data'][0].jumlah_botol;
+                var qty = response['data'][0].qty;
+                var jml = stok - qty;
+                var input = document.getElementById("jb");
+                var input2 = document.getElementById("kontam");
+                var input3 = document.getElementById("stok");
 
-            if (sts == 1) {
+                if (qty > 0) {
+                    input.value = jml;
+                    input.setAttribute("max", jml);
+                    input2.setAttribute("max", jml);
+                    input3.setAttribute("max", jml);
 
-                $('#nkt').show();
-                $('#nnt').show();
-                $('#ngt').show();
-                $('#njk').show();
-                document.getElementById("kt").required = true;
-                document.getElementById("nt").required = true;
-                document.getElementById("gt").required = true;
-                document.getElementById("jk").required = true;
+                    input.setAttribute("min", jml);
+                    input2.setAttribute("min", jml);
+                    input3.setAttribute("min", jml);
+                } else {
+                    input.value = stok;
+                    input.setAttribute("max", stok);
+                    input2.setAttribute("max", stok);
+                    input3.setAttribute("max", stok);
 
-            }else{
-                $('#nkt').hide();
-                $('#nnt').hide();
-                $('#ngt').hide();
-                $('#njk').hide();
-                document.getElementById("kt").required = false;
-                document.getElementById("nt").required = false;
-                document.getElementById("gt").required = false;
-                document.getElementById("jk").required = false;
+                    input.setAttribute("min", stok);
+                    input2.setAttribute("min", stok);
+                    input3.setAttribute("min", stok);
+                }
             }
+        }
+        });
+    });
+
+        $('#kontam').change(function(){
+
+            // Department id
+            var kontam = $(this).val();
+            var jb = $('#jb').val();
+            if (jb > 0) {
+                var qty = jb - kontam;
+            }else{
+                var qty = 0;
+            }
+            var input2 = document.getElementById("stok");
+            input2.setAttribute("max", qty);
+            input2.setAttribute("min", qty);
+
+        });
+        $('#stok').change(function(){
+
+            // Department id
+            var sks = $(this).val();
+            var jb = $('#jb').val();
+
+            var qty = jb - sks;
+            var ktm = document.getElementById("kontam");
+            ktm.setAttribute("max", qty);
+            ktm.setAttribute("min", qty);
 
         });
 

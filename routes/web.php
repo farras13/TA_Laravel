@@ -75,6 +75,7 @@ Route::group(['middleware' => 'auth'], function () {
     // trans 2
     Route::get('trans2', [LabController::class, 'trans2'])->name('trans2');
     Route::get('trans2/tambah', [LabController::class, 'create2']);
+    Route::get('trans3/getData/{id}', [LabController::class, 'getData']);
     Route::post('trans2/add', [LabController::class, 'add2']);
     Route::get('trans2/edit/{id}', [LabController::class, 'edit2']);
     Route::post('trans2/update/{id}', [LabController::class, 'update2']);
@@ -83,6 +84,7 @@ Route::group(['middleware' => 'auth'], function () {
     // trans 3
     Route::get('trans3', [LabController::class, 'trans3'])->name('trans3');
     Route::get('trans3/tambah', [LabController::class, 'create3']);
+    Route::get('trans3/getData/{id}', [LabController::class, 'getData']);
     Route::post('trans3/add', [LabController::class, 'add3']);
     Route::get('trans3/edit/{id}', [LabController::class, 'edit3']);
     Route::post('trans3/update/{id}', [LabController::class, 'update3']);
