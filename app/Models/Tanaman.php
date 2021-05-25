@@ -17,6 +17,7 @@ class Tanaman extends Model
         'name',
         'stok',
         'status',
+        'show_status',
     ];
 
     public function gen()

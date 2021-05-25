@@ -42,4 +42,18 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\persilangan');
     }
 
+    public function panen()
+    {
+        return $this->hasOne('App\Models\panen');
+    }
+
+    public function proses()
+    {
+        return $this->hasOne('App\Models\proses');
+    }
+
+    public function eksternal()
+    {
+        return $this->hasOne('App\Models\Eksternal');
+    }
 }

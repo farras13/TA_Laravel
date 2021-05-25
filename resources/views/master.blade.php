@@ -97,7 +97,7 @@
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item">
-                        <a href="pages/widgets.html" class="nav-link">
+                        <a href="{{ route('home') }}" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
                             <p> Dashboard </p>
                         </a>
@@ -149,7 +149,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                            <a href="pages/examples/register.html" class="nav-link">
+                            <a href="{{ route('gudang') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Gudang</p>
                             </a>
@@ -166,13 +166,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                            <a href="pages/examples/login-v2.html" class="nav-link">
+                            <a href="{{ route('eksin') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data Masuk</p>
                             </a>
                             </li>
                             <li class="nav-item">
-                            <a href="pages/examples/register-v2.html" class="nav-link">
+                            <a href="{{ route('eksout') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data Keluar</p>
                             </a>

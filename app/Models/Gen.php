@@ -18,4 +18,9 @@ class Gen extends Model
     {
         return $this->hasOne('App\Models\Tanaman');
     }
+
+    public function eksternal()
+    {
+        return $this->hasOne('App\Models\Eksternal');
+    }
 }
