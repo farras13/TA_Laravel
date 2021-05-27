@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Dashboard</title>
+    <title>Anggrek Singosari</title>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
@@ -102,85 +102,80 @@
                             <p> Dashboard </p>
                         </a>
                     </li>
-
+                    @if (Auth::user()->role == 2 || Auth::user()->role == 3)
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>  Pegawai <i class="right fas fa-angle-left"></i>  </p>
                         </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ url('Pegawai') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Data Pegawai</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('FormPegawai') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Form Pegawai</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./index2.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Akun</p>
-                            </a>
-                        </li>
-                    </ul>
-                    </li>
-
-                    <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-plus-square"></i>
-                        <p> Inventory <i class="fas fa-angle-left right"></i>  </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p> Internal  <i class="fas fa-angle-left right"></i> </p>
-                        </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('gen') }}" class="nav-link">
+                                <a href="{{ url('Pegawai') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Gen</p>
+                                    <p>Data Pegawai</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                            <a href="{{ route('gudang') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Gudang</p>
-                            </a>
+                                <a href="{{ route('akun') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Akun</p>
+                                </a>
                             </li>
                         </ul>
-                        </li>
-                        <li class="nav-item">
+                    </li>
+
+                    <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>
-                            Eksternal
-                            <i class="fas fa-angle-left right"></i>
-                            </p>
+                            <i class="nav-icon far fa-plus-square"></i>
+                            <p> Inventory <i class="fas fa-angle-left right"></i>  </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                            <a href="{{ route('eksin') }}" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Data Masuk</p>
+                                <p> Internal  <i class="fas fa-angle-left right"></i> </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('gen') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Gen</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                <a href="{{ route('gudang') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Gudang</p>
+                                </a>
+                                </li>
+                            </ul>
                             </li>
                             <li class="nav-item">
-                            <a href="{{ route('eksout') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Data Keluar</p>
-                            </a>
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>
+                                    Eksternal
+                                    <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                    <a href="{{ route('eksin') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Data Masuk</p>
+                                    </a>
+                                    </li>
+                                    <li class="nav-item">
+                                    <a href="{{ route('eksout') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Data Keluar</p>
+                                    </a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
-                        </li>
-                    </ul>
                     </li>
+                    @endif
 
                     <li class="nav-header">Persilangan</li>
                     <li class="nav-item">
@@ -190,30 +185,32 @@
                     </a>
                     </li>
 
+                    @if (Auth::user()->role != 1)
                     <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                        Kebun
-                        <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                        <a href="{{ route('proses') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Proses Buah</p>
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                            Kebun
+                            <i class="right fas fa-angle-left"></i>
+                            </p>
                         </a>
-                        </li>
-                        <li class="nav-item">
-                        <a href="{{ route('panen') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Panen Buah</p>
-                        </a>
-                        </li>
-                    </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                            <a href="{{ route('proses') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Proses Buah</p>
+                            </a>
+                            </li>
+                            <li class="nav-item">
+                            <a href="{{ route('panen') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Panen Buah</p>
+                            </a>
+                            </li>
+                        </ul>
                     </li>
-
+                    @endif
+                    @if (Auth::user()->role != 0)
                     <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -243,6 +240,7 @@
                         </li>
                     </ul>
                     </li>
+                    @endif
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -279,7 +277,7 @@
     <script src="{{ asset('backend/plugins/jquery-ui/jquery-ui.min.js') }} "></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
-    $.widget.bridge('uibutton', $.ui.button)
+        $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

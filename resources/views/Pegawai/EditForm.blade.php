@@ -30,7 +30,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ url('pegawai/add') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ url('pegawai/update', [$val->id]) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="col-sm-3"><div class="form-group"></div></div>
@@ -42,7 +42,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                                         </div>
-                                        <input type="text" class="form-control" id="NamaLengkap" placeholder="Nama" name="name" required>
+                                        <input type="text" class="form-control" id="NamaLengkap" value="{{ $val->name }}" name="name" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -51,7 +51,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                         </div>
-                                        <input type="date" name="lahir" class="form-control" required>
+                                        <input type="date" name="lahir" value="{{ $val->lahir }}" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -61,8 +61,8 @@
                                             <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
                                         </div>
                                         <select class="form-control" name="jk" id="jk" required>
-                                            <option value="Pria">Pria</option>
-                                            <option value="Wanita">Wanita</option>
+                                            <option value="Pria" {{ $val->jk == "pria" ? 'selected' : '' }}>Pria</option>
+                                            <option value="Wanita" {{ $val->jk == "wanita" ? 'selected' : '' }}>Wanita</option>
                                         </select>
                                     </div>
                                 </div>
@@ -73,7 +73,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" ><i class="fas fa-phone"></i></span>
                                         </div>
-                                        <input type="text" class="form-control"
+                                        <input type="text" class="form-control" value="{{ $val->hp }}"
                                                 data-inputmask="'mask': ['9999-9999-9999 [x99999]', '+099 99 99 9999[9]-9999']" data-mask id="hp" name="hp" required>
                                     </div>
                                 </div>
@@ -84,7 +84,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-home"></i></span>
                                         </div>
-                                        <textarea type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" required></textarea>
+                                        <textarea type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" required>{{ $val->alamat }}</textarea>
                                     </div>
                                 </div>
                                 <!-- /.form group -->
@@ -92,42 +92,13 @@
                                     <label>Foto</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="exampleInputFile" name="foto" required>
+                                            <input type="file" class="custom-file-input" id="exampleInputFile" name="foto" >
                                             <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- /.card-body -->
-                            <div class="card-body">
-                                <h4>Data Pegawai</h4>
-                                <div class="form-group">
-                                    <label for=""><strong>Username</strong></label>
-                                    <input type="text" name="username" class="form-control" placeholder="username" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for=""><strong>Password</strong></label>
-                                    <input type="password" name="password" class="form-control" placeholder="Password" required>
-                                </div>
-                                {{-- <div class="form-group">
-                                    <label>Status Kepegawaian</label>
-                                    <select class="custom-select form-control-border" id="StatusPegawai" name="aktif" required>
-                                        <option>---</option>
-                                        <option value="0">Aktif</option>
-                                        <option value="1">Tidak Aktif</option>
-                                    </select>
-                                </div> --}}
-                                <div class="form-group">
-                                    <label>Jabatan</label>
-                                    <select class="custom-select form-control-border" id="role" name="role" required>
-                                        <option>---</option>
-                                        <option value="0">Kebun</option>
-                                        <option value="1">Lab</option>
-                                        <option value="2">Admin</option>
-                                        <option value="3">Owner</option>
-                                    </select>
-                                </div>
-                            </div>
                             <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                             </div>

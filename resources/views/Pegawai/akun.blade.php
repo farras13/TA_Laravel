@@ -48,7 +48,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title" style="padding-top:6px;">Tabel Data Kepegawaian</h3>
-                <a href="{{ route('formpegawai') }}" class="btn btn-primary float-right"> <i class="fas fa-plus"> Tambah </i> </a>
+                {{-- <a href="{{ route('formpegawai') }}" class="btn btn-primary float-right"> <i class="fas fa-plus"> Tambah </i> </a> --}}
             </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -56,12 +56,9 @@
                   <thead>
                   <tr>
                     <th>No</th>
-                    <th>Nama</th>
-                    <th>Gender</th>
-                    <th>Tanggal Lahir</th>
-                    <th>No. Telp</th>
-                    <th>Alamat</th>
-                    <th>Foto</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Role</th>
                     <th>#</th>
                   </tr>
                   </thead>
@@ -69,14 +66,21 @@
                     @foreach($data as $per)
                         <tr>
                             <td> {{ $per->id }} </td>
-                            <td> {{ $per->name }} </td>
-                            <td> {{ $per->jk }} </td>
-                            <td> {{ $per->lahir }} </td>
-                            <td> {{ $per->hp }} </td>
-                            <td> {{ $per->alamat }} </td>
-                            <td> <img src="/image/{{ $per->foto }}" width="100px"> </td>
+                            <td> {{ $per->username }} </td>
+                            <td> {{ $per->password }} </td>
                             <td>
-                                <a href="{{ url('pegawai/edit', [$per->id]) }}">Edit</a>
+                                @if($per->role == 0)
+                                    Petugas Kebun
+                                @elseif($per->role == 1)
+                                    Petugas Lab
+                                @elseif($per->role == 2)
+                                    Admin
+                                @else
+                                    Owner
+                                @endif
+                            </td>
+                            <td>
+                                <a href="{{ url('akun/edit', [$per->id]) }}">Edit</a>
                                 <a href="{{ url('pegawai/destroy', [$per->id]) }}">hapus</a>
                             </td>
                         </tr>
@@ -85,12 +89,9 @@
                   <tfoot>
                   <tr>
                     <th>No</th>
-                    <th>Nama</th>
-                    <th>Gender</th>
-                    <th>Tanggal Lahir</th>
-                    <th>No. Telp</th>
-                    <th>Alamat</th>
-                    <th>Foto</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Role</th>
                     <th>#</th>
                   </tr>
                   </tfoot>
@@ -129,9 +130,6 @@
         "responsive": true, "lengthChange": false, "autoWidth": false,
         "buttons": [
             {extend: 'colvis', postfixButtons: [ 'colvisRestore' ] },
-            {extend: 'pdf', title:'Data Pegawai PT Sari Bumi Mulya'},
-            {extend: 'excel', title: 'Data Pegawai PT Sari Bumi Mulya'},
-            {extend:'print',title: 'Data Pegawai PT Sari Bumi Mulya'},
         ]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });

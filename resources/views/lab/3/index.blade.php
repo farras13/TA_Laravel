@@ -10,12 +10,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>DataTables</h1>
+            <h1>Trans3</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">DataTables</li>
+              <li class="breadcrumb-item active">Trans3</li>
             </ol>
           </div>
           <div class="col-sm-7"> </div>
@@ -41,9 +41,11 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">DataTable with default features</h3>
+                        <h3 class="card-title">Data Trans 3</h3>
                         <div class="card-tools">
-                            <a href="{{ url('trans3/tambah') }}" class="btn btn-tool"> <i class="fas fa-plus"></i> </a>
+                            @if (Auth::user()->role == 2 || Auth::user()->role == 1)
+                                <a href="{{ url('trans3/tambah') }}" class="btn btn-tool"> <i class="fas fa-plus"></i> </a>
+                            @endif
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
                             </button>
@@ -88,7 +90,7 @@
                                     <td>{{ $d->user['name'] }}</td>
 
                                     <td>
-                                        @if (Auth::user()->role == 2)
+                                        @if (Auth::user()->role == 2 || Auth::user()->role == 1)
                                             <a class="nav-link" data-toggle="dropdown" href="#">
                                                 <i class="fas fa-bars"></i>
                                             </a>
@@ -153,7 +155,12 @@
     $(function () {
       $("#example1").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        "buttons": [
+            {extend: 'colvis', postfixButtons: [ 'colvisRestore' ] },
+            {extend: 'pdf', title:'Data Trans 3 PT Sari Bumi Mulya'},
+            {extend: 'excel', title: 'Data Trans 3 PT Sari Bumi Mulya'},
+            {extend:'print',title: 'Data Trans 3 PT Sari Bumi Mulya'},
+        ]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
   </script>
