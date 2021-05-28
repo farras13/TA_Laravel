@@ -12,6 +12,7 @@ class Gen extends Model
     protected $primaryKey = 'idGen';
     protected $fillable = [
         'gen',
+        'Keterangan',
     ];
 
     public function tanaman()

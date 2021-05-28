@@ -48,8 +48,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('penggajian/print/{id}', [PenggajianController::class, 'print']);
     //akun
     Route::get('akun', [PegawaiController::class, 'akun'])->name('akun');
-    Route::get('akun/tambah', [PegawaiController::class, 'create']);
+    Route::get('akun/tambah', [PegawaiController::class, 'formAkun']);
     Route::get('akun/edit/{id}', [PegawaiController::class, 'editAkun']);
+    Route::post('akun/add', [PegawaiController::class, 'addAkun']);
     Route::post('akun/update/{id}', [PegawaiController::class, 'updateAkun']);
     Route::get('akun/destroy/{id}', [PegawaiController::class, 'destroy']);
 

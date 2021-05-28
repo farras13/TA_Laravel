@@ -58,6 +58,7 @@
                                 <tr>
                                     <th>Id</th>
                                     <th>Gen</th>
+                                    <th>Keterangan</th>
                                     <th>#</th>
                                 </tr>
                             </thead>
@@ -66,6 +67,7 @@
                                 <tr>
                                     <td> {{ $per->idGen }} </td>
                                     <td> {{ $per->gen }} </td>
+                                    <td> {{ $per->keterangan }} </td>
                                     <td>
                                         @if (Auth::user()->role == 2)
                                             <a class="nav-link" data-toggle="dropdown" href="#">

@@ -68,7 +68,7 @@
                   <tbody>
                     @foreach($data as $per)
                         <tr>
-                            <td> {{ $per->id }} </td>
+                            <td> {{ $per->id_pegawai }} </td>
                             <td> {{ $per->name }} </td>
                             <td> {{ $per->jk }} </td>
                             <td> {{ $per->lahir }} </td>
@@ -76,8 +76,8 @@
                             <td> {{ $per->alamat }} </td>
                             <td> <img src="/image/{{ $per->foto }}" width="100px"> </td>
                             <td>
-                                <a href="{{ url('pegawai/edit', [$per->id]) }}">Edit</a>
-                                <a href="{{ url('pegawai/destroy', [$per->id]) }}">hapus</a>
+                                <a href="{{ url('pegawai/edit', [$per->id_pegawai]) }}">Edit</a>
+                                <a href="{{ url('pegawai/destroy', [$per->id_pegawai]) }}">hapus</a>
                             </td>
                         </tr>
                      @endforeach

@@ -89,7 +89,7 @@
                     <img src="{{ asset('backend/dist/img/user2-160x160.jpg') }} " class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                    <a href="#" class="d-block">{{ Auth::user()->pegawai->name }}</a>
                 </div>
             </div>
 
@@ -103,7 +103,7 @@
                         </a>
                     </li>
 
-                    @if (Auth::user()->role == 3)
+                    @if (Auth::user()->pegawai->role == 3)
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -132,7 +132,7 @@
                     </li>
                     @endif
 
-                    @if (Auth::user()->role == 2 || Auth::user()->role == 3)
+                    @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 3)
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon far fa-plus-square"></i>
@@ -194,7 +194,7 @@
                     </a>
                     </li>
 
-                    @if (Auth::user()->role != 1)
+                    @if (Auth::user()->pegawai->role != 1)
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -219,7 +219,7 @@
                         </ul>
                     </li>
                     @endif
-                    @if (Auth::user()->role != 0)
+                    @if (Auth::user()->pegawai->role != 0)
                     <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>

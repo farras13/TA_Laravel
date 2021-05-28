@@ -49,7 +49,13 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Nama Gen</label>
-                                   <input type="text" class="form-control" name="gen" id="gen">
+                                   <input type="text" class="form-control" name="gen" id="gen" placeholder="Nama gen" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Keterangan</label>
+                                    <textarea class="form-control" name="keterangan" id="keterangan" cols="20" rows="5"></textarea>
                                 </div>
                             </div>
                         </div>

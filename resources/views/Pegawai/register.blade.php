@@ -30,25 +30,26 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{  url('akun/update', [$data->id]) }}" method="post">
+                        <form action="{{  url('akun/tambah') }}" method="post">
                             @csrf
                             <div class="card-body">
-                                <h4>Data Pegawai</h4>
+                                <h4>Akun Pegawai</h4>
+
                                 <div class="form-group">
                                     <label>Pegawai</label>
                                     <select class="form-control select2" name="idp" style="width: 100%;" required>
-                                        @foreach ($user as $d)
-                                            <option <?php if( $d['id '] == $data->id_pegawai) echo 'selected'; ?> value="{{ $d->id }}"> {{ $d->name}} </option>
+                                        @foreach ($data as $d)
+                                            <option value="{{ $d->id_pegawai }}"> {{ $d->name}} </option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for=""><strong>Username</strong></label>
-                                    <input type="text" name="username" class="form-control" value="{{ $data->username }}" required>
+                                    <input type="text" name="username" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label for=""><strong>Password</strong></label>
-                                    <input type="password" name="password" class="form-control" value="{{ $data->password }}" required>
+                                    <input type="password" name="password" class="form-control" required>
                                 </div>
                             </div>
                             <div class="card-footer">

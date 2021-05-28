@@ -52,6 +52,12 @@
                                    <input type="text" class="form-control" name="gen" id="gen" value="{{ $data->gen }}">
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Keterangan</label>
+                                    <textarea class="form-control" name="keterangan" id="keterangan" cols="20" rows="5">{{ $data->keterangan }}</textarea>
+                                </div>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary float-right ml-3">Submit</button>
                         <a href="{{ route('gen') }}" class="btn btn-danger float-right">Cancel</a>

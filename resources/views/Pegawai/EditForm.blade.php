@@ -87,6 +87,16 @@
                                         <textarea type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" required>{{ $val->alamat }}</textarea>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label>Jabatan</label>
+                                    <select class="custom-select form-control-border" id="role" name="role" required>
+                                        <option>---</option>
+                                        <option value="0" {{ $val->role == 0 ? 'selected' : '' }}>Kebun</option>
+                                        <option value="1" {{ $val->role == 1 ? 'selected' : '' }}>Lab</option>
+                                        <option value="2" {{ $val->role == 2 ? 'selected' : '' }}>Admin</option>
+                                        <option value="3" {{ $val->role == 3 ? 'selected' : '' }}>Owner</option>
+                                    </select>
+                                </div>
                                 <!-- /.form group -->
                                 <div class="form-group">
                                     <label>Foto</label>

@@ -48,7 +48,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title" style="padding-top:6px;">Tabel Data Kepegawaian</h3>
-                {{-- <a href="{{ route('formpegawai') }}" class="btn btn-primary float-right"> <i class="fas fa-plus"> Tambah </i> </a> --}}
+                <a href="{{ url('akun/tambah') }}" class="btn btn-primary float-right"> <i class="fas fa-plus"> Tambah </i> </a>
             </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -69,11 +69,11 @@
                             <td> {{ $per->username }} </td>
                             <td> {{ $per->password }} </td>
                             <td>
-                                @if($per->role == 0)
+                                @if($per->pegawai->role == 0)
                                     Petugas Kebun
-                                @elseif($per->role == 1)
+                                @elseif($per->pegawai->role == 1)
                                     Petugas Lab
-                                @elseif($per->role == 2)
+                                @elseif($per->pegawai->role == 2)
                                     Admin
                                 @else
                                     Owner

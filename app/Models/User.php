@@ -17,15 +17,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
         'username',
         'password',
-        'lahir',
-        'jk',
-        'alamat',
-        'hp',
-        'role',
-        'foto',
+
     ];
 
     /**
@@ -36,6 +30,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password'
     ];
+
+    public function pegawai()
+    {
+        return $this->belongsTo('App\Models\pegawai', 'id_pegawai');
+    }
 
     public function penggajian()
     {

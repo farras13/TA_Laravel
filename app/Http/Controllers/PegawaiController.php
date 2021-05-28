@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\pegawai;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -11,7 +12,7 @@ class PegawaiController extends Controller
 {
     public function index()
     {
-        $data = User::all();
+        $data = pegawai::all();
         return view('Pegawai/Pegawai', compact('data'));
     }
 
@@ -22,39 +23,30 @@ class PegawaiController extends Controller
 
     public function edit($id)
     {
-        $val = User::find($id);
+        $val = pegawai::find($id);
         return view('Pegawai/EditForm', compact('val'));
     }
 
     public function add (Request $request)
     {
-        $user = new User();
-        $user->name = ucwords(strtolower($request->name));
-        $user->username = strtolower($request->username);
-        $user->password = Hash::make($request->password);
-        $user->lahir = $request->lahir;
-        $user->jk = strtolower($request->jk);
-        $user->alamat = $request->alamat;
-        $user->hp = strtolower($request->hp);
-        $user->role = strtolower($request->role);
-
         if ($image = $request->file('foto')) {
             $destinationPath = 'image/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
-            $user->foto = $profileImage;
         }
 
-        $simpan = $user->save();
+        pegawai::create([
+            'name' => ucwords(strtolower($request->name)),
+            'lahir' => $request->lahir,
+            'jk' => strtolower($request->jk),
+            'alamat' => $request->alamat,
+            'hp' =>  strtolower($request->hp),
+            'role' => strtolower($request->role),
+            'foto' => $profileImage,
+        ]);
 
-
-        if ($simpan) {
-            return redirect()->route('pegawai')
-            ->with('success', 'Data Berhasil Ditambahkan');
-        } else {
-            return redirect()->route('formpegawai')
-            ->with('errors', 'Data Gagal Ditambahkan');
-        }
+        return redirect()->route('pegawai')
+        ->with('success', 'Data Berhasil Ditambahkan');
     }
 
     public function update(Request $request, $id)
@@ -90,15 +82,17 @@ class PegawaiController extends Controller
             ];
         }
 
-        User::find($id)->update($data);
+        pegawai::find($id)->update($data);
         return redirect()->route('pegawai')
                         ->with('success','Data Pegawai updated successfully');
     }
 
     public function destroy($id)
     {
-        //fungsi eloquent untuk menghapus data
-        User::find($id)->delete();
+        $del = array('id_pegawai' => $id, );
+        $data = array('aktif' => 1, );
+        pegawai::find($id)->update($data);
+        User::where($del)->update($data);
         return redirect()->route('pegawai')
             ->with('success', 'Data Berhasil Dihapus');
     }
@@ -108,26 +102,50 @@ class PegawaiController extends Controller
         $data = User::all();
         return view('Pegawai.akun', compact('data'));
     }
-
+    public function formAkun()
+    {
+        $data = pegawai::all();
+        return view('Pegawai/register', compact('data'));
+    }
     public function editAkun($id)
     {
+        $user = pegawai::all();
         $data = User::find($id);
-        return view('Pegawai.editAkun',compact('data'));
+        return view('Pegawai.editAkun',compact('data', 'user'));
+    }
+
+    public function addAkun(Request $request)
+    {
+        $user = new User();
+        $user->username = strtolower($request->username);
+        $user->password = Hash::make($request->password);
+        $user->id_pegawai = $request->idp;
+
+        $simpan = $user->save();
+
+        if ($simpan) {
+            return redirect()->route('pegawai')
+            ->with('success', 'Data Berhasil Ditambahkan');
+        } else {
+            return redirect()->route('formpegawai')
+            ->with('errors', 'Data Gagal Ditambahkan');
+        }
     }
 
     public function updateAkun(Request $request, $id)
     {
         $request->validate([
-            'username'                  => 'required',
-            'password'                    => 'required',
+            'username'  => 'required',
+            'password'  => 'required',
         ]);
         $data = [
             'username' => $request->username,
             'password' => Hash::make($request->password),
-            'role' => $request->role,
+            'id_pegawai' => $request->idp
+
         ];
         User::find($id)->update($data);
         return redirect()->route('akun')
-                        ->with('success','Product updated successfully');
+                ->with('success','Product updated successfully');
     }
 }
