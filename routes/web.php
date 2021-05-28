@@ -7,6 +7,7 @@ use App\Http\Controllers\KebunController;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\PenggajianController;
 use App\Http\Controllers\PersilanganController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('pegawai/update/{id}', [PegawaiController::class, 'update']);
     Route::get('pegawai/destroy/{id}', [PegawaiController::class, 'destroy']);
 
+    //Penggajian
+    Route::get('penggajian', [PenggajianController::class, 'index'])->name('penggajian');
+    Route::get('penggajian/tambah', [PenggajianController::class, 'create']);
+    Route::post('penggajian/add', [PenggajianController::class, 'add']);
+    Route::get('penggajian/edit/{id}', [PenggajianController::class, 'edit']);
+    Route::post('penggajian/update/{id}', [PenggajianController::class, 'update']);
+    Route::get('penggajian/destroy/{id}', [PenggajianController::class, 'destroy']);
+    Route::get('penggajian/print/{id}', [PenggajianController::class, 'print']);
     //akun
     Route::get('akun', [PegawaiController::class, 'akun'])->name('akun');
     Route::get('akun/tambah', [PegawaiController::class, 'create']);

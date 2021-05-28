@@ -37,6 +37,11 @@ class User extends Authenticatable
         'password'
     ];
 
+    public function penggajian()
+    {
+        return $this->hasOne('App\Models\Penggajian');
+    }
+
     public function persilangan()
     {
         return $this->hasOne('App\Models\persilangan');

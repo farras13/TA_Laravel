@@ -10,12 +10,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Gudang</h1>
+            <h1>Penggajian</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Gudang</li>
+              <li class="breadcrumb-item active">Penggajian</li>
             </ol>
           </div>
           <div class="col-sm-7"> </div>
@@ -27,6 +27,7 @@
                     </button>
                     <p>{{ $message }}</p>
                 </div>
+            @elseif ($message = Session::get('error'))
             @endif
           </div>
         </div>
@@ -40,9 +41,11 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Gudang</h3>
+                        <h3 class="card-title"> Data Penggajian</h3>
                         <div class="card-tools">
-                            <a href="{{ url('gudang/tambah') }}" class="btn btn-tool"> <i class="fas fa-plus"></i> </a>
+                            @if (Auth::user()->role == 3)
+                                <a href="{{ url('penggajian/tambah') }}" class="btn btn-tool"> <i class="fas fa-plus"></i> </a>
+                            @endif
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
                             </button>
@@ -56,57 +59,68 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>no</th>
-                                    <th>Kode</th>
-                                    <th>gen</th>
-                                    <th>nama</th>
-                                    <th>jk</th>
-                                    <th>stok</th>
-                                    <th>status</th>
+                                    <th>ID</th>
+                                    <th>ID Pegawai</th>
+                                    <th>Nama Pegawai</th>
+                                    <th>Gaji Pokok</th>
+                                    <th>Tunjangan</th>
+                                    <th>Bonus</th>
+                                    <th>Jabatan</th>
                                     <th>#</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $n = 1; ?>
                                 @foreach($data as $d)
                                 <tr>
-                                    <td> {{ $n }} </td>
-                                    <td> {{ $d->idTanaman }} </td>
-                                    <td> {{ $d->gen['gen'] }} </td>
-                                    <td> {{ $d->name }}</td>
-                                    <td> {{ $d->jk }} </td>
-                                    <td>{{ $d->stok }}</td>
-                                    <td>{{ $d->status }}</td>
+                                    <td> {{ $d->id_gaji }} </td>
+                                    <td> {{ $d->id_pegawai }} </td>
+                                    <td>{{ $d->user->name }}</td>
+                                    <td>Rp.{{ number_format($d->gaji_pokok, 2, ',', '.') }}</td>
+                                    <td>Rp.{{ number_format($d->tunjangan, 2, ',', '.') }}</td>
+                                    <td>Rp.{{ number_format($d->bonus, 2, ',', '.') }}</td>
                                     <td>
-                                        @if (Auth::user()->role == 2 || Auth::user()->role == 3 )
+                                        @if ( $d->user->role == 3)
+                                            Owner
+                                        @elseif ( $d->user->role == 2)
+                                            Admin
+                                        @elseif ( $d->user->role == 0)
+                                            Petugas Kebun
+                                        @endif
+
+                                    </td>
+
+                                    <td>
+                                        @if (Auth::user()->role == 3)
                                             <a class="nav-link" data-toggle="dropdown" href="#">
                                                 <i class="fas fa-bars"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                                                 <div class="dropdown-divider"></div>
-                                                <a href="{{ url('gudang/detail', [$d->idTanaman]) }}" class="dropdown-item">
-                                                    <i class="fas fa-pen"></i> Detail
+                                                <a href="{{ url('penggajian/print', [$d->id_gaji]) }}" target="__BLANK" class="dropdown-item">
+                                                    <i class="fas fa-print"></i> print
                                                 </a>
-                                                {{-- <div class="dropdown-divider"></div>
-                                                <a href="{{ url('gudang/edit' , [$d->idTanaman]) }}" class="dropdown-item">
-                                                    <i class="fas fa-eraser"></i> Edit
-                                                </a> --}}
+                                                <a href="{{ url('penggajian/edit', [$d->id_gaji]) }}" class="dropdown-item">
+                                                    <i class="fas fa-pen"></i> Edit
+                                                </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="{{ url('penggajian/destroy', [$d->id_gaji]) }}" class="dropdown-item">
+                                                    <i class="fas fa-eraser"></i> Hapus
+                                                </a>
                                             </div>
                                         @endif
                                     </td>
                                 </tr>
-                                <?php $n++; ?>
                             @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>no</th>
-                                    <th>Kode</th>
-                                    <th>gen</th>
-                                    <th>nama</th>
-                                    <th>jk</th>
-                                    <th>stok</th>
-                                    <th>status</th>
+                                    <th>ID</th>
+                                    <th>ID Pegawai</th>
+                                    <th>Nama Pegawai</th>
+                                    <th>Gaji Pokok</th>
+                                    <th>Tunjangan</th>
+                                    <th>Bonus</th>
+                                    <th>Jabatan</th>
                                     <th>#</th>
                                 </tr>
                             </tfoot>
@@ -146,35 +160,13 @@
         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
         "buttons": [
             {extend: 'colvis', postfixButtons: [ 'colvisRestore' ] },
-            {   extend: 'pdf',
-                title:'Data Gudang PT Sari Bumi Mulya',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6],
-                    modifier: {
-                        page: 'current'
-                    }
+
+            {extend: 'excel', title: 'Data Trans 2 PT Sari Bumi Mulya',exportOptions: {
+                columns: [0, 1, 2, 3, 4, 5, 6, 7],
+                modifier: {
+                    page: 'current'
                 }
-            },
-            {
-                extend: 'excel',
-                title: 'Data Gudang PT Sari Bumi Mulya',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6],
-                    modifier: {
-                        page: 'current'
-                    }
-                }
-            },
-            {
-                extend:'print',
-                title: 'Data Gudang PT Sari Bumi Mulya',
-                exportOptions: {
-                    columns: [0, 1, 2, 3, 4, 5, 6],
-                    modifier: {
-                        page: 'current'
-                    }
-                }
-            },
+            }}
         ]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
