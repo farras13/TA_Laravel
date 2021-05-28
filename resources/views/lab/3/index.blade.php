@@ -67,7 +67,9 @@
                                     <th>Status</th>
                                     <th>Keterangan</th>
                                     <th>Penanggung Jawab</th>
+                                    @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
                                     <th>#</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -90,7 +92,7 @@
                                     <td>{{ $d->user['name'] }}</td>
 
                                     <td>
-                                        @if (Auth::user()->role == 2 || Auth::user()->role == 1)
+                                        @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
                                             <a class="nav-link" data-toggle="dropdown" href="#">
                                                 <i class="fas fa-bars"></i>
                                             </a>
@@ -119,7 +121,9 @@
                                     <th>status</th>
                                     <th>keterangan</th>
                                     <th>penanggung jawab</th>
+                                    @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
                                     <th>#</th>
+                                    @endif
                                 </tr>
                             </tfoot>
                         </table>
@@ -171,7 +175,7 @@
                 }
             }},
             {extend:'print',title: 'Data Trans 3 PT Sari Bumi Mulya',exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6, 7], 
+                columns: [0, 1, 2, 3, 4, 5, 6, 7],
                 modifier: {
                     page: 'current'
                 }

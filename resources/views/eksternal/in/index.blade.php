@@ -63,7 +63,9 @@
                                     <th>Jumlah</th>
                                     <th>Keterangan</th>
                                     <th>Author</th>
+                                    @if (Auth::user()->pegawai->role == 2)
                                     <th>#</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -79,7 +81,7 @@
                                     <td> {{ $d->keterangan }}</td>
                                     <td> {{ $d->user['name'] }}</td>
                                     <td>
-                                        @if (Auth::user()->role == 2)
+                                        @if (Auth::user()->pegawai->role == 2)
                                             <a class="nav-link" data-toggle="dropdown" href="#">
                                                 <i class="fas fa-bars"></i>
                                             </a>
@@ -109,7 +111,9 @@
                                     <th>Jumlah</th>
                                     <th>Keterangan</th>
                                     <th>Author</th>
+                                    @if (Auth::user()->pegawai->role == 2)
                                     <th>#</th>
+                                    @endif
                                 </tr>
                             </tfoot>
                         </table>

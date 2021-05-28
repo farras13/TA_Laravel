@@ -63,7 +63,9 @@
                                     <th>jk</th>
                                     <th>stok</th>
                                     <th>status</th>
+                                    @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 3)
                                     <th>#</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -78,7 +80,7 @@
                                     <td>{{ $d->stok }}</td>
                                     <td>{{ $d->status }}</td>
                                     <td>
-                                        @if (Auth::user()->role == 2 || Auth::user()->role == 3 )
+                                        @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 3)
                                             <a class="nav-link" data-toggle="dropdown" href="#">
                                                 <i class="fas fa-bars"></i>
                                             </a>
@@ -107,7 +109,9 @@
                                     <th>jk</th>
                                     <th>stok</th>
                                     <th>status</th>
+                                    @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 3)
                                     <th>#</th>
+                                    @endif
                                 </tr>
                             </tfoot>
                         </table>
