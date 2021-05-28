@@ -102,7 +102,7 @@
                             <p> Dashboard </p>
                         </a>
                     </li>
-                    @if (Auth::user()->role == 2 || Auth::user()->role == 3)
+                    @if (Auth::user()->role == 3)
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -123,7 +123,8 @@
                             </li>
                         </ul>
                     </li>
-
+                    @endif
+                    @if (Auth::user()->role == 2 || Auth::user()->role == 3)
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon far fa-plus-square"></i>

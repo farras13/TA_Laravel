@@ -142,12 +142,39 @@
 <script>
     $(function () {
       $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "responsive": true, "lengthChange": true, "autoWidth": false,
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
         "buttons": [
             {extend: 'colvis', postfixButtons: [ 'colvisRestore' ] },
-            {extend: 'pdf', title:'Data Gudang PT Sari Bumi Mulya'},
-            {extend: 'excel', title: 'Data Gudang PT Sari Bumi Mulya'},
-            {extend:'print',title: 'Data Gudang PT Sari Bumi Mulya'},
+            {   extend: 'pdf',
+                title:'Data Gudang PT Sari Bumi Mulya',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5, 6],
+                    modifier: {
+                        page: 'current'
+                    }
+                }
+            },
+            {
+                extend: 'excel',
+                title: 'Data Gudang PT Sari Bumi Mulya',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5, 6],
+                    modifier: {
+                        page: 'current'
+                    }
+                }
+            },
+            {
+                extend:'print',
+                title: 'Data Gudang PT Sari Bumi Mulya',
+                exportOptions: {
+                    columns: [0, 1, 2, 3, 4, 5, 6],
+                    modifier: {
+                        page: 'current'
+                    }
+                }
+            },
         ]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });

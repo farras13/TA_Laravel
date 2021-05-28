@@ -125,12 +125,16 @@
 <script>
     $(function () {
       $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "responsive": true, "lengthChange": true, "autoWidth": false,
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
         "buttons": [
             {extend: 'colvis', postfixButtons: [ 'colvisRestore' ] },
-            {extend: 'pdf', title:'Data Gen PT Sari Bumi Mulya'},
-            {extend: 'excel', title: 'Data Gen PT Sari Bumi Mulya'},
-            {extend:'print',title: 'Data Gen PT Sari Bumi Mulya'},
+            {extend:'print',title: 'Data Gen PT Sari Bumi Mulya', exportOptions: {
+                columns: [0, 1],
+                modifier: {
+                    page: 'current'
+                }
+            }},
         ]
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });

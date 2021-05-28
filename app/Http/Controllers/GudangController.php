@@ -50,7 +50,7 @@ class GudangController extends Controller
     {
         $data = Tanaman::find($id);
         $dt = ['nama' => $data->name, 'jk' => $data->jk ];
-        $dtt = ['calon_kode' => $data->idTanaman];
+        $dtt = ['calon_nama' => $data->name, 'calon_jk' => $data->jk ];
         $cek = eksternal::where($dt)->first();
         $persilangan = Persilangan::where($dtt)->get();
         // print_r($cek);die;

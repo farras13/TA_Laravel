@@ -62,9 +62,17 @@ class PersilanganController extends Controller
             'pollen' => $request->pollen,
             'idAuth' => Auth::user()->id
         ]);
+        $dt = ['seed' => $request->seed, 'pollen' => $request->pollen ];
+        $cek = Persilangan::where($dt)->count();
          //jika data berhasil ditambahkan, akan kembali ke halaman utama
-         return redirect()->route('persilangan')
-             ->with('success', 'Data Berhasil Ditambahkan');
+         if($cek < 1){
+            return redirect()->route('persilangan')
+                ->with('success', 'Data Berhasil Ditambahkan');
+         }else{
+            return redirect()->route('persilangan')
+                ->with('success', 'Data Sudah Pernah disilangkan || Data Berhasil Ditambahkan');
+         }
+
     }
 
     public function rubah(Request $request, $id)
