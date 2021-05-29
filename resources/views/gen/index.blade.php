@@ -60,7 +60,7 @@
                                     <th>Gen</th>
                                     <th>Keterangan</th>
                                     @if (Auth::user()->pegawai->role == 2)
-                                    <th>#</th>
+                                    <th>Operasi</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -76,7 +76,7 @@
                                             <span class="btn btn-success">
                                                 <i class="fas fa-plus"></i>
                                                 <a href="{{ url('gen/tambah') }}">
-                                                <span>Add files</span>
+                                                <span>Tambah</span>
                                               </span>
                                               <button type="submit" class="btn btn-warning">
                                               <i class="fas fa-upload"></i>
@@ -99,7 +99,7 @@
                                     <th>Id</th>
                                     <th>Gen</th>
                                     @if (Auth::user()->pegawai->role == 2)
-                                    <th>#</th>
+                                    <th>Operasi</th>
                                     @endif
                                 </tr>
                             </tfoot>

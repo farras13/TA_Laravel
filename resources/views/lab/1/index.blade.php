@@ -67,9 +67,9 @@
                                     <th>Berhasil</th>
                                     <th>Status</th>
                                     <th>Keterangan</th>
-                                    <th>Author</th>
+                                    <th>Peagungjawab</th>
                                     @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
-                                    <th>#</th>
+                                    <th>Operasi</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -123,9 +123,9 @@
                                     <th>Berhasil</th>
                                     <th>Status</th>
                                     <th>Keterangan</th>
-                                    <th>Author</th>
+                                    <th>Penanggungjawab</th>
                                     @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
-                                    <th>#</th>
+                                    <th>Operasi</th>
                                     @endif
                                 </tr>
                             </tfoot>

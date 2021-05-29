@@ -61,11 +61,11 @@
                                     <th>No</th>
                                     <th>Kode</th>
                                     <th>Persilangan</th>
-                                    <th>status</th>
-                                    <th>keterangan</th>
-                                    <th>penanggung jawab</th>
+                                    <th>Status</th>
+                                    <th>Keterangan</th>
+                                    <th>Penanggungjawab</th>
                                     @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 0)
-                                    <th>#</th>
+                                    <th>Operasi</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -112,11 +112,11 @@
                                     <th>No</th>
                                     <th>Kode</th>
                                     <th>Persilangan</th>
-                                    <th>status</th>
-                                    <th>keterangan</th>
-                                    <th>penanggung jawab</th>
+                                    <th>Status</th>
+                                    <th>Keterangan</th>
+                                    <th>Penanggungjawab</th>
                                     @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 3)
-                                    <th>#</th>
+                                    <th>Operasi</th>
                                     @endif
                                 </tr>
                             </tfoot>

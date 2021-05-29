@@ -60,11 +60,11 @@
                                     <th>Tanggal</th>
                                     <th>Tujuan</th>
                                     <th>Nama</th>
-                                    <th>Jumlah</th>
+                                    <th>Jumlah Tanaman</th>
                                     <th>Keterangan</th>
-                                    <th>Author</th>
+                                    <th>Penanggungjawab</th>
                                     @if (Auth::user()->pegawai->role == 2)
-                                    <th>#</th>
+                                    <th>Operasi</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -86,7 +86,7 @@
                                             <span class="btn btn-success">
                                                 <i class="fas fa-plus"></i>
                                                 <a href="{{ url('eksternal/out/tambah') }}">
-                                                <span>Add files</span>
+                                                <span>Tambah</span>
                                               </span>
                                               <button type="submit" class="btn btn-warning">
                                               <i class="fas fa-upload"></i>
@@ -107,11 +107,11 @@
                                     <th>Tanggal</th>
                                     <th>Tujuan</th>
                                     <th>Nama</th>
-                                    <th>Jumlah</th>
+                                    <th>Jumlah Tanaman</th>
                                     <th>Keterangan</th>
-                                    <th>Author</th>
+                                    <th>Penanggungjawab</th>
                                     @if (Auth::user()->pegawai->role == 2)
-                                    <th>#</th>
+                                    <th>Operasi</th>
                                     @endif
                                 </tr>
                             </tfoot>
