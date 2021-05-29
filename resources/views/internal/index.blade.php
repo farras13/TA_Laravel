@@ -40,7 +40,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Gudang</h3>
+                        <h3 class="card-title">Data tanaman anggrek yang berasal dari persilangan yang dilakukan di kebun anggrek PT Sari Bumi Mulya</h3>
                         <div class="card-tools">
                             <a href="{{ url('gudang/tambah') }}" class="btn btn-tool"> <i class="fas fa-plus"></i> </a>
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">

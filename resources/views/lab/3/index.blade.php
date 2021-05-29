@@ -41,7 +41,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Trans 3</h3>
+                        <h3 class="card-title">Data tanaman yang telah melakukan persilangan dan sedang melalui proses Trans 3</h3>
                         <div class="card-tools">
                             @if (Auth::user()->role == 2 || Auth::user()->role == 1)
                                 <a href="{{ url('trans3/tambah') }}" class="btn btn-tool"> <i class="fas fa-plus"></i> </a>

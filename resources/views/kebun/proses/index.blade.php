@@ -40,7 +40,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Proses Buah </h3>
+                        <h3 class="card-title">Data Proses Pembuahan Tanaman Anggrek Setelah Melakukan Persilangan</h3>
                         <div class="card-tools">
                             @if (Auth::user()->role == 2 || Auth::user()->role == 0)
                                 <a href="{{ url('kebun/proses/tambah') }}" class="btn btn-tool"> <i class="fas fa-plus"></i> </a>

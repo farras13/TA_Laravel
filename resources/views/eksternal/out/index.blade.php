@@ -15,7 +15,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Data Keluar</li>
+              <li class="breadcrumb-item active">Data-Keluar</li>
             </ol>
           </div>
           <div class="col-sm-7"> </div>
@@ -40,7 +40,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"> Data Keluar </h3>
+                        <h3 class="card-title"> Data Keluar dari tanaman yang berasal dari luar kebun anggrek PT Sari Bumi Mulya</h3>
                         <div class="card-tools">
                             <a href="{{ url('eksternal/out/tambah') }}" class="btn btn-tool"> <i class="fas fa-plus"></i> </a>
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
