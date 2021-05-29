@@ -57,12 +57,12 @@
                             <thead>
                                 <tr>
                                     <th>Kode</th>
-                                    <th>tanggal</th>
-                                    <th>seed</th>
-                                    <th>pollen</th>
+                                    <th>Tanggal</th>
+                                    <th>Seed</th>
+                                    <th>Pollen</th>
                                     <th>Status</th>
                                     @if (Auth::user()->pegawai->role == 2)
-                                    <th>#</th>
+                                    <th>Operasi</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -125,12 +125,12 @@
                             <tfoot>
                                 <tr>
                                     <th>Kode</th>
-                                    <th>tanggal</th>
-                                    <th>seed</th>
-                                    <th>pollen</th>
+                                    <th>Tanggal</th>
+                                    <th>Seed</th>
+                                    <th>Pollen</th>
                                     <th>Status</th>
                                     @if (Auth::user()->pegawai->role == 2)
-                                    <th>#</th>
+                                    <th>Operasi</th>
                                     @endif
                                 </tr>
                             </tfoot>

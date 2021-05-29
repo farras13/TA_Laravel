@@ -62,13 +62,13 @@
                                     <th>Id</th>
                                     <th>Kode</th>
                                     <th>Persilangan</th>
-                                    <th>status</th>
+                                    <th>Status</th>
                                     <th>Jumlah Botol</th>
                                     <th>Stok Sisa</th>
-                                    <th>keterangan</th>
-                                    <th>penanggung jawab</th>
+                                    <th>Keterangan</th>
+                                    <th>Penanggungjawab</th>
                                     @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
-                                    <th>#</th>
+                                    <th>Operasi</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -116,13 +116,13 @@
                                     <th>Id</th>
                                     <th>Kode</th>
                                     <th>Persilangan</th>
-                                    <th>status</th>
+                                    <th>Status</th>
                                     <th>Jumlah Botol</th>
                                     <th>Stok Sisa</th>
-                                    <th>keterangan</th>
-                                    <th>penanggung jawab</th>
+                                    <th>Keterangan</th>
+                                    <th>Penanggungjawab</th>
                                     @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
-                                    <th>#</th>
+                                    <th>Operasi</th>
                                     @endif
                                 </tr>
                             </tfoot>

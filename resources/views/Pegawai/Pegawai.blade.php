@@ -57,12 +57,12 @@
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>Gender</th>
+                    <th>Jenis Kelamin</th>
                     <th>Tanggal Lahir</th>
                     <th>No. Telp</th>
                     <th>Alamat</th>
                     <th>Foto</th>
-                    <th>#</th>
+                    <th>Operasi</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -86,12 +86,12 @@
                   <tr>
                     <th>No</th>
                     <th>Nama</th>
-                    <th>Gender</th>
+                    <th>Jenis Kelamin</th>
                     <th>Tanggal Lahir</th>
                     <th>No. Telp</th>
                     <th>Alamat</th>
                     <th>Foto</th>
-                    <th>#</th>
+                    <th>Operasi</th>
                   </tr>
                   </tfoot>
                 </table>

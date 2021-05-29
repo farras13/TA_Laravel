@@ -66,7 +66,7 @@
                                     <th>Tunjangan</th>
                                     <th>Bonus</th>
                                     <th>Jabatan</th>
-                                    <th>#</th>
+                                    <th>Operasi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -121,7 +121,7 @@
                                     <th>Tunjangan</th>
                                     <th>Bonus</th>
                                     <th>Jabatan</th>
-                                    <th>#</th>
+                                    <th>Operasi</th>
                                 </tr>
                             </tfoot>
                         </table>
