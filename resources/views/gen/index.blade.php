@@ -72,19 +72,23 @@
                                     <td> {{ $per->keterangan }} </td>
                                     <td>
                                         @if (Auth::user()->pegawai->role == 2)
-                                            <a class="nav-link" data-toggle="dropdown" href="#">
-                                                <i class="fas fa-bars"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                                                <div class="dropdown-divider"></div>
-                                                <a href="{{ url('gen/edit', [$per->idGen]) }}" class="dropdown-item">
-                                                    <i class="fas fa-pen"></i> Edit
-                                                </a>
-                                                <div class="dropdown-divider"></div>
-                                                <a href="{{ url('gen/destroy', [$per->idGen]) }}" class="dropdown-item">
-                                                    <i class="fas fa-eraser"></i> Hapus
-                                                </a>
-                                            </div>
+                                        <div class="btn-group">
+                                            <span class="btn btn-success">
+                                                <i class="fas fa-plus"></i>
+                                                <a href="{{ url('gen/tambah') }}">
+                                                <span>Add files</span>
+                                              </span>
+                                              <button type="submit" class="btn btn-warning">
+                                              <i class="fas fa-upload"></i>
+                                              <a href="{{ url('gen/edit', [$per->idGen]) }}">
+                                              <span>Edit</span>
+                                            </button>
+                                            <button type="reset" class="btn btn-danger">
+                                                <a href="{{ url('gen/destroy', [$per->idGen]) }}">
+                                                <i class="fas fa-times-circle"></i>
+                                                <span>Delete</span>
+                                              </button>
+                                          </div>
                                         @endif
                                     </td>
                                 </tr>

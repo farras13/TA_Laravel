@@ -56,15 +56,15 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>no</th>
+                                    <th>NO</th>
                                     <th>Kode</th>
-                                    <th>gen</th>
-                                    <th>nama</th>
-                                    <th>jk</th>
-                                    <th>stok</th>
-                                    <th>status</th>
+                                    <th>Gen</th>
+                                    <th>Nama</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Jumlah Stok</th>
+                                    <th>Status</th>
                                     @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 3)
-                                    <th>#</th>
+                                    <th>Operasi</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -81,18 +81,12 @@
                                     <td>{{ $d->status }}</td>
                                     <td>
                                         @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 3)
-                                            <a class="nav-link" data-toggle="dropdown" href="#">
-                                                <i class="fas fa-bars"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                                                <div class="dropdown-divider"></div>
-                                                <a href="{{ url('gudang/detail', [$d->idTanaman]) }}" class="dropdown-item">
-                                                    <i class="fas fa-pen"></i> Detail
-                                                </a>
-                                                {{-- <div class="dropdown-divider"></div>
-                                                <a href="{{ url('gudang/edit' , [$d->idTanaman]) }}" class="dropdown-item">
-                                                    <i class="fas fa-eraser"></i> Edit
-                                                </a> --}}
+                                        <div class="btn-group">
+                                            <button type="submit" class="btn btn-warning">
+                                              <i class="fas fa-upload"></i>
+                                              <a href="{{ url('gudang/detail', [$d->idTanaman]) }}">
+                                              <span>Details</span>
+                                            </button>
                                             </div>
                                         @endif
                                     </td>
@@ -102,15 +96,15 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>no</th>
+                                    <th>NO</th>
                                     <th>Kode</th>
-                                    <th>gen</th>
-                                    <th>nama</th>
-                                    <th>jk</th>
-                                    <th>stok</th>
-                                    <th>status</th>
+                                    <th>Gen</th>
+                                    <th>Nama</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Jumlah Stok</th>
+                                    <th>Status</th>
                                     @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 3)
-                                    <th>#</th>
+                                    <th>Operasi</th>
                                     @endif
                                 </tr>
                             </tfoot>

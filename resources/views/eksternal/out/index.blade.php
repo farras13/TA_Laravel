@@ -82,19 +82,18 @@
                                     <td> {{ $d->user['name'] }} </td>
                                     <td>
                                         @if (Auth::user()->pegawai->role == 2)
-                                            <a class="nav-link" data-toggle="dropdown" href="#">
-                                                <i class="fas fa-bars"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                                                <div class="dropdown-divider"></div>
-                                                <a href="{{ url('eksternal/out/detail', [$d->id]) }}" class="dropdown-item">
-                                                    <i class="fas fa-pen"></i> Detail
-                                                </a>
-                                                <div class="dropdown-divider"></div>
-                                                <a href="{{ url('eksternal/out/edit' , [$d->id]) }}" class="dropdown-item">
-                                                    <i class="fas fa-eraser"></i> Edit
-                                                </a>
-                                            </div>
+                                        <div class="btn-group">
+                                            <span class="btn btn-success">
+                                                <i class="fas fa-plus"></i>
+                                                <a href="{{ url('eksternal/out/tambah') }}">
+                                                <span>Add files</span>
+                                              </span>
+                                              <button type="submit" class="btn btn-warning">
+                                              <i class="fas fa-upload"></i>
+                                              <a href="{{ url('eksternal/out/edit' , [$d->id]) }}">
+                                              <span>Edit</span>
+                                            </button>
+                                          </div>
                                         @endif
                                     </td>
                                 </tr>
