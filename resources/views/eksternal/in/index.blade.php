@@ -84,13 +84,13 @@
                                         @if (Auth::user()->pegawai->role == 2)
                                         <div class="btn-group">
                                             <span class="btn btn-success">
-                                                <i class="fas fa-plus"></i>
-                                                <a href="{{ url('eksternal/in/tambah') }}">
+                                                <i style="color: #333" class="fas fa-plus"></i>
+                                                <a style="color: #333" href="{{ url('eksternal/in/tambah') }}">
                                                 <span>Tambah</span>
                                               </span>
                                               <button type="submit" class="btn btn-warning">
                                               <i class="fas fa-upload"></i>
-                                              <a href="{{ url('eksternal/in/edit' , [$d->id]) }}">
+                                              <a style="color: #333" href="{{ url('eksternal/in/edit' , [$d->id]) }}">
                                               <span>Edit</span>
                                             </button>
                                           </div>

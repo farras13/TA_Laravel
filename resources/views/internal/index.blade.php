@@ -84,7 +84,7 @@
                                         <div class="btn-group">
                                             <button type="submit" class="btn btn-warning">
                                               <i class="fas fa-upload"></i>
-                                              <a href="{{ url('gudang/detail', [$d->idTanaman]) }}">
+                                              <a style="color: #333" href="{{ url('gudang/detail', [$d->idTanaman]) }}">
                                               <span>Details</span>
                                             </button>
                                             </div>

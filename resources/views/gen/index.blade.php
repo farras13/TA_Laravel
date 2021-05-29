@@ -74,18 +74,18 @@
                                         @if (Auth::user()->pegawai->role == 2)
                                         <div class="btn-group">
                                             <span class="btn btn-success">
-                                                <i class="fas fa-plus"></i>
-                                                <a href="{{ url('gen/tambah') }}">
+                                                <i style="color: #333" class="fas fa-plus"></i>
+                                                <a style="color: #333" href="{{ url('gen/tambah') }}">
                                                 <span>Tambah</span>
                                               </span>
                                               <button type="submit" class="btn btn-warning">
-                                              <i class="fas fa-upload"></i>
-                                              <a href="{{ url('gen/edit', [$per->idGen]) }}">
+                                              <i style="color: #333" class="fas fa-upload"></i>
+                                              <a style="color: #333" href="{{ url('gen/edit', [$per->idGen]) }}">
                                               <span>Edit</span>
                                             </button>
                                             <button type="reset" class="btn btn-danger">
-                                                <a href="{{ url('gen/destroy', [$per->idGen]) }}">
-                                                <i class="fas fa-times-circle"></i>
+                                                <a style="color: #333" href="{{ url('gen/destroy', [$per->idGen]) }}">
+                                                <i style="color: #333" class="fas fa-times-circle"></i>
                                                 <span>Delete</span>
                                               </button>
                                           </div>
