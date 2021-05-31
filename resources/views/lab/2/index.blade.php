@@ -43,7 +43,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Data tanaman yang telah melakukan persilangan dan sedang melalui proses Trans 2</h3>
                         <div class="card-tools">
-                            @if (Auth::user()->role == 2 || Auth::user()->role == 1)
+                            @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
                                 <a href="{{ url('trans2/tambah') }}" class="btn btn-tool"> <i class="fas fa-plus"></i> </a>
                             @endif
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -66,7 +66,7 @@
                                     <th>Jumlah Botol</th>
                                     <th>Stok Sisa</th>
                                     <th>Keterangan</th>
-                                    <th>Penanggungjawab</th>
+                                    <th>Penanggung Jawab Jawab</th>
                                     @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
                                     <th>Operasi</th>
                                     @endif
@@ -89,7 +89,7 @@
                                     <td>{{ $d->jumlah_botol }}</td>
                                     <td>{{ $d->jumlah_botol - $d->qty }}</td>
                                     <td>{{ $d->keterangan }}</td>
-                                    <td>{{ $d->user['name'] }}</td>
+                                    <td>{{ $d->user->pegawai->name }}</td>
 
                                     <td>
                                         @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
@@ -98,9 +98,11 @@
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                                                 <div class="dropdown-divider"></div>
-                                                <a href="{{ url('trans2/edit', [$d->id_pt2]) }}" class="dropdown-item">
-                                                    <i class="fas fa-pen"></i> Edit
-                                                </a>
+                                                @if ($d->persilangan->status_trans3 == 0 || $d->persilangan->status_trans3 == 3)
+                                                    <a href="{{ url('trans2/edit', [$d->id_pt2]) }}" class="dropdown-item">
+                                                        <i class="fas fa-pen"></i> Edit
+                                                    </a>
+                                                @endif
                                                 <div class="dropdown-divider"></div>
                                                 <a href="{{ url('trans2/destroy', [$d->id_pt2]) }}" class="dropdown-item">
                                                     <i class="fas fa-eraser"></i> Hapus

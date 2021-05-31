@@ -43,7 +43,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form action="{{ url('trans2/update', [$data->id_pt2]) }}" method="post">
+                    <form action="{{ url('trans3/update', [$data->id_pt3]) }}" method="post">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
@@ -55,9 +55,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Persilangan</label>
-                                    <select class="form-control select2" name="persilangan" style="width: 100%;" disabled>
-                                        <option value="{{ $data->id_persilangan }}"> {{ $data->id_persilangan .' | '. $data->persilangan->tanaman->name .' x '. $data->persilangan->tanamann->name }} </option>
-                                    </select>
+                                    <input class="form-control" id="t3" name="persilangan"  value="{{ $data->id_persilangan }}" readonly>
+
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
@@ -123,14 +122,14 @@
 
     $(document).ready(function(){
 
-        $('#t3').change(function(){
+        // $('#t3').change(function(){
 
         // Department id
-        var id = $(this).val();
+        var id = $('#t3').val();
 
         // AJAX request
         $.ajax({
-        url: 'getData/'+id,
+        url: '/trans3/getData/'+id,
         type: 'get',
         dataType: 'json',
         success: function(response){
@@ -152,8 +151,8 @@
                 if (qty > 0) {
                     input.value = jml;
                     input.setAttribute("max", jml);
-                    input2.setAttribute("max", jml);
-                    input3.setAttribute("max", jml);
+                    // input2.setAttribute("max", jml);
+                    // input3.setAttribute("max", jml);
 
                     input.setAttribute("min", jml);
                     input2.setAttribute("min", jml);
@@ -161,8 +160,8 @@
                 } else {
                     input.value = stok;
                     input.setAttribute("max", stok);
-                    input2.setAttribute("max", stok);
-                    input3.setAttribute("max", stok);
+                    // input2.setAttribute("max", stok);
+                    // input3.setAttribute("max", stok);
 
                     input.setAttribute("min", stok);
                     input2.setAttribute("min", stok);
@@ -171,7 +170,7 @@
             }
         }
         });
-    });
+        // });
 
         $('#kontam').change(function(){
 

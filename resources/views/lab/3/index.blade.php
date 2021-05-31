@@ -43,7 +43,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Data tanaman yang telah melakukan persilangan dan sedang melalui proses Trans 3</h3>
                         <div class="card-tools">
-                            @if (Auth::user()->role == 2 || Auth::user()->role == 1)
+                            @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
                                 <a href="{{ url('trans3/tambah') }}" class="btn btn-tool"> <i class="fas fa-plus"></i> </a>
                             @endif
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -62,8 +62,10 @@
                                     <th>Id</th>
                                     <th>Kode</th>
                                     <th>Persilangan</th>
+                                    <th>Botol T2</th>
                                     <th>Target</th>
-                                    <th>Jumlah</th>
+                                    <th>Berhasil</th>
+                                    <th>Kontam</th>
                                     <th>Status</th>
                                     <th>Keterangan</th>
                                     <th>Penanggung Jawab</th>
@@ -80,8 +82,10 @@
                                           {{$awal.'-'.$teng.'-'.$khir }}
                                     </td>
                                     <td>{{ $d->persilangan->tanaman['name'].' x '.$d->persilangan->tanamann['name']}}</td>
+                                    <td>{{ $d->botolT2 }}</td>
                                     <td>{{ $d->target }}</td>
                                     <td>{{ $d->stok }}</td>
+                                    <td>{{ $d->kontam }}</td>
                                     <td>    @if($d->status == 1)
                                                 Berhasil
                                             @else
@@ -89,7 +93,7 @@
                                             @endif
                                     </td>
                                     <td>{{ $d->keterangan }}</td>
-                                    <td>{{ $d->user['name'] }}</td>
+                                    <td>{{ $d->user->pegawai->name }}</td>
 
                                     <td>
                                         @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
@@ -116,11 +120,13 @@
                                     <th>Id</th>
                                     <th>Kode</th>
                                     <th>Persilangan</th>
+                                    <th>Botol T2</th>
                                     <th>Target</th>
-                                    <th>Jumlah</th>
-                                    <th>status</th>
-                                    <th>keterangan</th>
-                                    <th>penanggung jawab</th>
+                                    <th>Berhasil</th>
+                                    <th>Kontam</th>
+                                    <th>Status</th>
+                                    <th>Keterangan</th>
+                                    <th>Penanggung Jawab</th>
                                     @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
                                     <th>Operasi</th>
                                     @endif

@@ -12,12 +12,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Trans 2 Form</h1>
+                    <h1>Trans 3 Form</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Trans 2 Form</li>
+                        <li class="breadcrumb-item active">Trans 3 Form</li>
                     </ol>
                 </div>
             </div>
@@ -30,7 +30,7 @@
             <!-- SELECT2 EXAMPLE -->
             <div class="card card-default">
                 <div class="card-header">
-                    <h3 class="card-title">Trans 2 Form</h3>
+                    <h3 class="card-title">Trans 3 Form</h3>
 
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -43,23 +43,17 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <form action="{{ url('trans2/add') }}" method="post">
+                    <form action="{{ url('trans3/add') }}" method="post">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Tanggal</label>
-                                   <input type="date" class="form-control" name="tgl" id="tgl" value="{{ date('Y-m-d') }}">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
                                     <label>Persilangan</label>
-                                    <select class="form-control select2" name="persilangan" id="t3" style="width: 100%;">
+                                    <select class="form-control select2" name="persilangan" id="t3" style="width: 100%;" required>
                                         <option value=""><!- Select Persilangan -!> </option>
                                         @foreach ($silang as $d)
-                                            @if ($d->status_pk == 1 && $d->status_pb == 1 && $d->status_trans == 1 && $d->status_trans2 == 1 && $d->status_trans3 == 0 )
-                                                <option value="{{ $d->kodePersilangan }}">{{  $d->kodePersilangan .' | '. $d->tanaman['name'] .' x '. $d->tanamann['name'] }}</option>
+                                            @if ($d->status == 1 && $d->persilangan->status_trans3 == 0 || $d->qty != 0)
+                                                <option value="{{ $d->id_persilangan }}">{{  $d->id_persilangan .' | '. $d->persilangan->tanaman['name'] .' x '. $d->persilangan->tanamann['name'] }}</option>
                                             @endif
                                         @endforeach
                                     </select>
@@ -67,19 +61,19 @@
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="target">Target</label>
-                                <input type="number" name="target" id="target" class="form-control" min="0">
+                                <input type="number" name="target" id="target" class="form-control" min="0" required>
                             </div>
                             <div class="col-md-12 mb-3" id="test">
                                 <label for="jb">Jumlah Botol </label>
-                                <input type="number" name="jb" id="jb" class="form-control" min="0">
+                                <input type="number" name="jb" id="jb" class="form-control" min="0" required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="stok">Stok</label>
-                                <input type="number" name="stok" id="stok" class="form-control" min="0">
+                                <input type="number" name="stok" id="stok" class="form-control" min="0" required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="kontam">kontam</label>
-                                <input type="number" name="kontam" id="kontam" class="form-control" min="0">
+                                <input type="number" name="kontam" id="kontam" class="form-control" min="0" required>
                             </div>
                             <!-- /.col -->
                             <div class="col-md-12">
@@ -162,28 +156,28 @@ $(document).ready(function(){
                  var stok = response['data'][0].jumlah_botol;
                  var qty = response['data'][0].qty;
                  var jml = stok - qty;
-                 var input = document.getElementById("jb");
+
+                 var input = document.getElementById("target");
+                 var input4 = document.getElementById("jb");
                  var input2 = document.getElementById("kontam");
                  var input3 = document.getElementById("stok");
 
                  if (qty > 0) {
-                    input.value = jml;
-                    input.setAttribute("max", jml);
+                    input4.value = jml;
+                    input4.setAttribute("max", jml);
                     input2.setAttribute("max", jml);
                     input3.setAttribute("max", jml);
 
-                    input.setAttribute("min", jml);
-                    input2.setAttribute("min", jml);
-                    input3.setAttribute("min", jml);
+                    input4.setAttribute("min", jml);
+
                  } else {
-                    input.value = stok;
+                    input4.value = qty;
                     input.setAttribute("max", stok);
                     input2.setAttribute("max", stok);
                     input3.setAttribute("max", stok);
 
-                    input.setAttribute("min", stok);
-                    input2.setAttribute("min", stok);
-                    input3.setAttribute("min", stok);
+                    input4.setAttribute("min", stok);
+
                  }
              }
            }
@@ -201,6 +195,7 @@ $(document).ready(function(){
             var qty = 0;
         }
         var input2 = document.getElementById("stok");
+        input2.value = qty;
         input2.setAttribute("max", qty);
         input2.setAttribute("min", qty);
 
@@ -213,6 +208,7 @@ $(document).ready(function(){
 
         var qty = jb - sks;
         var ktm = document.getElementById("kontam");
+        ktm.value = qty;
         ktm.setAttribute("max", qty);
         ktm.setAttribute("min", qty);
 

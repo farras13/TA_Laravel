@@ -13,9 +13,8 @@ class PersilanganController extends Controller
 
     public function index()
     {
-        $persilangan = Persilangan::all();
-        $tanaman = Tanaman::all();
-        return view('persilangan.index', compact('persilangan', 'tanaman'));
+        $persilangan = Persilangan::select(['kodePersilangan', 'seed', 'pollen', 'status_pb', 'status_pk', 'status_trans', 'status_trans2','status_trans3','created_at','idAuth'])->get();
+        return view('persilangan.index', compact('persilangan'));
     }
 
     public function formT()
@@ -57,7 +56,6 @@ class PersilanganController extends Controller
 
         Persilangan::create([
             'kodePersilangan' => $kode,
-            'tanggal' => $request->tgl,
             'seed' => $request->seed,
             'pollen' => $request->pollen,
             'idAuth' => Auth::user()->id

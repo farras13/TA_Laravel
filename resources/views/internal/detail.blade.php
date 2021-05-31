@@ -70,7 +70,7 @@
                                     <td> {{ $data->name }} </td>
                                 </tr>
                                 <tr>
-                                    <th>jk</th>
+                                    <th>gender</th>
                                     <td> {{ $data->jk }} </td>
                                 </tr>
                                 <tr>
@@ -111,7 +111,7 @@
                                     <th>Kode</th>
                                     <th>gen</th>
                                     <th>nama</th>
-                                    <th>jk</th>
+                                    <th>gender</th>
                                     <th>stok</th>
                                     <th>status</th>
                                 </tr>
@@ -134,7 +134,7 @@
                                         <th>Kode</th>
                                         <th>gen</th>
                                         <th>nama</th>
-                                        <th>jk</th>
+                                        <th>gender</th>
                                         <th>stok</th>
                                         <th>status</th>
                                     </tr>
@@ -145,7 +145,7 @@
                                         <th>Tanggal Masuk</th>
                                         <th>gen</th>
                                         <th>nama</th>
-                                        <th>jk</th>
+                                        <th>gender</th>
                                         <th>stok</th>
                                         <th>status</th>
                                     </tr>
@@ -166,7 +166,7 @@
                                         <th>Tanggal Masuk</th>
                                         <th>gen</th>
                                         <th>nama</th>
-                                        <th>jk</th>
+                                        <th>gender</th>
                                         <th>stok</th>
                                         <th>status</th>
                                     </tr>

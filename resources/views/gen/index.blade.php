@@ -42,7 +42,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Tabel data genetika anggrek dan jenis jenisnya</h3>
                         <div class="card-tools">
-                            <a href="{{ url('gen/tambah') }}" class="btn btn-tool"> <i class="fas fa-plus"></i> </a>
+                            <a href="{{ url('gen/tambah') }}" class="btn btn-success"> <i class="fas fa-plus"></i> Tambah </a>
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
                             </button>
@@ -73,21 +73,15 @@
                                     <td>
                                         @if (Auth::user()->pegawai->role == 2)
                                         <div class="btn-group">
-                                            <span class="btn btn-success">
-                                                <i style="color: #333" class="fas fa-plus"></i>
-                                                <a style="color: #333" href="{{ url('gen/tambah') }}">
-                                                <span>Tambah</span>
-                                              </span>
-                                              <button type="submit" class="btn btn-warning">
-                                              <i style="color: #333" class="fas fa-upload"></i>
-                                              <a style="color: #333" href="{{ url('gen/edit', [$per->idGen]) }}">
-                                              <span>Edit</span>
-                                            </button>
-                                            <button type="reset" class="btn btn-danger">
-                                                <a style="color: #333" href="{{ url('gen/destroy', [$per->idGen]) }}">
-                                                <i style="color: #333" class="fas fa-times-circle"></i>
-                                                <span>Delete</span>
-                                              </button>
+
+                                                <a style="color: #333" href="{{ url('gen/edit', [$per->idGen]) }}" class="btn btn-warning">
+                                                    <i style="color: #333" class="fas fa-upload"></i>
+                                                    <span>Edit</span>
+                                                </a>
+                                                <a style="color: #333" href="{{ url('gen/destroy', [$per->idGen]) }}" class="btn btn-danger">
+                                                    <i style="color: #333" class="fas fa-times-circle"></i>
+                                                    <span>Delete</span>
+                                                </a>
                                           </div>
                                         @endif
                                     </td>

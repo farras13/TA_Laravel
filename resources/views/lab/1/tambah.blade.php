@@ -48,14 +48,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Tanggal</label>
-                                   <input type="date" class="form-control" name="tgl" id="tgl" value="{{ date('Y-m-d') }}">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
                                     <label>Persilangan</label>
-                                    <select class="form-control select2" name="persilangan" style="width: 100%;">
+                                    <select class="form-control select2" name="persilangan" style="width: 100%;" required>
                                         @foreach ($silang as $d)
                                             @if ($d->status_pk == 1 && $d->status_pb == 1 && $d->status_trans == 0 )
                                                 <option value="{{ $d->kodePersilangan }}">{{ $d->kodePersilangan .' | '. $d->tanaman['name'] .' x '. $d->tanamann['name'] }}</option>
@@ -64,21 +58,24 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <label for="jb">Jumlah Botol</label>
-                                <input type="number" name="jb" id="jb" class="form-control" min="0">
+                                <input type="number" name="jb" id="jb" class="form-control" min="0" required>
                             </div>
                             <!-- /.col -->
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Status</label>
-                                    <select class="form-control" name="pollen" style="width: 100%;">
+                                    <select class="form-control" name="status" style="width: 100%;" required>
                                         <option value="1">Berhasil</option>
                                         <option value="2">Gagal</option>
                                     </select>
                                 </div>
                             </div>
-
+                            <div class="col-md-12 mb-3">
+                                <label for="ket">Keterangan</label>
+                                <textarea type="text" name="ket" id="ket" class="form-control" rows="5"></textarea>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary float-right ml-3">Submit</button>
                         <a href="{{ route('trans') }}" class="btn btn-danger float-right">Cancel</a>
@@ -116,52 +113,5 @@
         });
     });
 </script>
-<script type='text/javascript'>
 
-    $(document).ready(function(){
-        var jb = $('#jb').val();
-
-        var input = document.getElementById("ktm");
-        var input2 = document.getElementById("qty");
-
-        input.setAttribute("max", jb);
-        input2.setAttribute("max", jb);
-
-      // Department Change
-      $('#jb').change(function(){
-        var jb = $(this).val();
-        var input = document.getElementById("ktm");
-        var input2 = document.getElementById("qty");
-
-        input.setAttribute("max", jb);
-        input2.setAttribute("max", jb);
-      });
-      $('#ktm').change(function(){
-
-        // Department id
-        var kontam = $(this).val();
-        var jb = $('#jb').val();
-
-        var qty = jb - kontam;
-        var input2 = document.getElementById("qty");
-        input2.setAttribute("max", qty);
-        input2.setAttribute("min", qty);
-
-      });
-      $('#sks').change(function(){
-
-        // Department id
-        var sks = $(this).val();
-        var jb = $('#jb').val();
-
-        var qty = jb - sks;
-        var input2 = document.getElementById("ktm");
-        input2.setAttribute("max", qty);
-        input2.setAttribute("min", qty);
-
-      });
-
-    });
-
-</script>
 @endsection

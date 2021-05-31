@@ -48,14 +48,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Tanggal</label>
-                                   <input type="date" class="form-control" name="tgl" id="tgl" value="{{ date('Y-m-d') }}">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
                                     <label>Persilangan</label>
-                                    <select class="form-control select2" name="persilangan" style="width: 100%;">
+                                    <select class="form-control select2" name="persilangan" id="persi" style="width: 100%;">
+                                        <option value=""></option>
                                         @foreach ($silang as $d)
                                             @if ($d->status_pk == 1 && $d->status_pb == 1 && $d->status_trans == 1 && $d->status_trans2 == 0 )
                                                 <option value="{{ $d->kodePersilangan }}">{{  $d->kodePersilangan .' | '. $d->tanaman['name'] .' x '. $d->tanamann['name'] }}</option>
@@ -64,7 +59,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 mb-3">
                                 <label for="jb">Jumlah Botol</label>
                                 <input type="number" name="jb" id="jb" class="form-control" min="0">
                             </div>
@@ -88,11 +83,12 @@
                             {{-- <div id="form-new"> --}}
                                 <div class="col-md-6 mb-3" id="nkt">
                                     <label for="kt">kode tanaman</label>
-                                    <input type="text" name="kt" id="kt" class="form-control">
+                                    <input type="number" name="kt" id="kt" class="form-control">
                                 </div>
                                 <div class="col-md-6 mb-3" id="nnt">
                                     <label for="nt">nama tanaman</label>
                                     <input type="text" name="nt" id="nt" class="form-control">
+                                    <small id="demo"></small>
                                 </div>
                                 <div class="col-md-6 mb-3" id="ngt">
                                     <label for="gt">gen tanaman</label>
@@ -141,11 +137,6 @@
         $('.select2bs4').select2({
             theme: 'bootstrap4'
         })
-
-        //Date range picker
-        $('#reservationdate').datetimepicker({
-            format: 'L'
-        });
     });
 </script>
 <script type='text/javascript'>
@@ -183,35 +174,56 @@
         }
 
       });
-
-      $('#status').change(function(){
-        var sts = $(this).val();
-
-        if (sts == 1) {
-
-            $('#nkt').show();
-            $('#nnt').show();
-            $('#ngt').show();
-            $('#njk').show();
-            document.getElementById("kt").required = true;
-            document.getElementById("nt").required = true;
-            document.getElementById("gt").required = true;
-            document.getElementById("jk").required = true;
-
-        }else{
-            $('#nkt').hide();
-            $('#nnt').hide();
-            $('#ngt').hide();
-            $('#njk').hide();
-            document.getElementById("kt").required = false;
-            document.getElementById("nt").required = false;
-            document.getElementById("gt").required = false;
-            document.getElementById("jk").required = false;
-        }
-
-      });
-
     });
 
+</script>
+<script>
+     $('#persi').change(function(){
+            // Department id
+            var id = $(this).val();
+            // AJAX request
+            $.ajax({
+            url: 'getData/'+id,
+            type: 'get',
+            dataType: 'json',
+                success: function(response){
+                    var len = 0;
+                    if(response['data'] != null){
+                        len = response['data'].length;
+                    }
+                    if(len > 0){
+                    // Read data and create <option >
+                        for(var i=0; i<len; i++){
+                            var stok = response['data'][i].qty;
+                            var input = document.getElementById("jb");
+                            input.value = stok;
+                            input.setAttribute("min", stok);
+                        }
+                    }
+                }
+            });
+        });
+</script>
+
+<script>
+    $('#nt').change(function(){
+           // Department id
+           var id = $(this).val();
+           // AJAX request
+           $.ajax({
+           url: 'getDataT/'+id,
+           type: 'get',
+           dataType: 'json',
+               success: function(response){
+                   var len = 0;
+                   if(response['data'] != null){
+                       len = response['data'].length;
+                   }
+                   if(len > 0){
+                       document.getElementById("demo").innerHTML = "Sudah ada digudang";
+                   }
+               }
+           });
+       });
 </script>
 @endsection

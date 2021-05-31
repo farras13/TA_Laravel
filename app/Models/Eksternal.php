@@ -20,6 +20,7 @@ class Eksternal extends Model
         'jk',
         'jumlah',
         'keterangan',
+        'show_status',
         'author'
     ];
 

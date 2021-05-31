@@ -34,7 +34,6 @@ class KebunController extends Controller
             'status' => $request->status,
             'keterangan' => $request->ket,
             'idAuth' => Auth::user()->id,
-            'tanggal' => $request->tgl,
         ]);
 
         $edit = ['status_pk' => $request->status, ];
@@ -105,8 +104,6 @@ class KebunController extends Controller
             'status' => $request->status,
             'keterangan' => $request->ket,
             'idAuth' => Auth::user()->id,
-            'tanggal_pengerjaan' => $request->tgl,
-            'tanggal_input' => $request->tgl,
         ]);
 
         $edit = ['status_pb' => $request->status, ];
@@ -132,13 +129,10 @@ class KebunController extends Controller
             'tanggal_input' => $request->tgl,
         ];
         Panen::find($id)->update($data);
-
-        if ($request->status == 2) {
-            $edit = ['status_pb' => $request->status,'status_trans' => $request->status,'status_trans2' => $request->status,'status_trans3' => $request->status,];
-        }else{
-            $edit = ['status_pb' => $request->status];
-        }
         $core =  Panen::find($id);
+
+        $edit = ['status_pb' => $request->status];
+
         Persilangan::find($core->idPersilangan)->update($edit);
         return redirect()->route('panen')
             ->with('success', 'Data Berhasil Di edit');
@@ -150,7 +144,7 @@ class KebunController extends Controller
 
         $edit = ['status_pk' => 0, 'status_pb' => 0, 'status_trans' => 0, 'status_trans2' => 0, ];
         Persilangan::find($core['idPersilangan'])->update($edit);
-        
+
         Proses::find($core['idPersilangan'])->delete();
 
         Panen::find($id)->delete();

@@ -70,7 +70,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="jk">JK</label>
+                                    <label for="jk">Gender</label>
                                     <select class="form-control select2" name="jk" id="jk" required>
                                         <option value="seed">Seed</option>
                                         <option value="pollen">Pollen</option>

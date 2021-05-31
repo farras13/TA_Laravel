@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class trans3 extends Model
 {
     protected $table = 'proses_trans3';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $primaryKey = 'id_pt3';
     protected $fillable = [
         'id_persilangan',

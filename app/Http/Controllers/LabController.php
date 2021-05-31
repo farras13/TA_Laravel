@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gen;
 use App\Models\Persilangan;
+use App\Models\Tanaman;
 use App\Models\trans;
 use App\Models\trans2;
 use App\Models\trans3;
@@ -27,25 +28,16 @@ class LabController extends Controller
 
     public function add(Request $request)
     {
-        $request->validate([
-            'persilangan' => 'required',
-            'status' => 'required',
-        ]);
-
         trans::create([
             'idPersilangan' => $request->persilangan,
             'status' => $request->status,
             'jumlah_botol' => $request->jb,
             'keterangan' => $request->ket,
-            'idAuth' => Auth::user()->id,
-            'tgl_pengerjaan' => $request->tgl,
+            'idAuth' => Auth::user()->id
         ]);
 
-        if ($request->status == 2) {
-            $edit = ['status_trans' => $request->status,'status_trans2' => $request->status];
-        }else{
-            $edit = ['status_trans' => $request->status];
-        }
+        $edit = ['status_trans' => $request->status];
+
         $id = $request->persilangan;
         Persilangan::find($id)->update($edit);
 
@@ -77,11 +69,7 @@ class LabController extends Controller
 
         trans::find($id)->update($data);
 
-        if ($request->status == 2) {
-            $edit = ['status_trans' => $request->status,'status_trans2' => $request->status];
-        }else{
-            $edit = ['status_trans' => $request->status];
-        }
+        $edit = ['status_trans' => $request->status];
 
         Persilangan::find($core['idPersilangan'])->update($edit);
 
@@ -116,8 +104,18 @@ class LabController extends Controller
     public function getDataT($id=0){
 
     	// Fetch Employees by Departmentid
-        $empData['data'] = Trans::select('*')
+        $empData['data'] = Trans::select('qty')
         			->where('idPersilangan',$id)
+        			->get();
+
+        return response()->json($empData);
+
+    }
+    public function getDataTa($id=0){
+
+    	// Fetch Employees by Departmentid
+        $empData['data'] = Tanaman::select('name')
+        			->where('name',$id)
         			->get();
 
         return response()->json($empData);
@@ -136,18 +134,47 @@ class LabController extends Controller
             'jumlah_botol' => $request->jb,
             'keterangan' => $request->ket,
             'idAuth' => Auth::user()->id,
-            'tgl_pengerjaan' => $request->tgl,
         ]);
 
-        $edit = [
-            'status_trans2' => $request->status,
-            'calon_kode' => $request->kt,
-            'calon_nama' => $request->nt,
-            'calon_gen' => $request->gt,
-            'calon_jk' => $request->jk,
-        ];
-        $id = $request->persilangan;
-        Persilangan::find($id)->update($edit);
+        $dt = ['name' => $request->nt, 'jk' => $request->jk ];
+        $cek = Tanaman::where($dt)->first();
+        // $cek = Tanaman::where(['name','=',$request->nama], ['jk','=',$request->jk])->first();
+
+        if (!empty($cek)) {
+            $edit = [
+                'status_trans2' => $request->status,
+                'calon_kode' => $cek->idTanaman,
+                'calon_nama' => $request->nt,
+                'calon_gen' => $request->gt,
+                'calon_jk' => $request->jk,
+            ];
+
+            $id = $request->persilangan;
+            Persilangan::find($id)->update($edit);
+        }else{
+            $ck = Tanaman::select('*')->orderByDesc("idTanaman")->first();
+            $kd = $ck->idTanaman + 1;
+
+            $edit = [
+                'status_trans2' => $request->status,
+                'calon_kode' => $kd,
+                'calon_nama' => $request->nt,
+                'calon_gen' => $request->gt,
+                'calon_jk' => $request->jk,
+            ];
+
+            $id = $request->persilangan;
+            Persilangan::find($id)->update($edit);
+
+            Tanaman::create([
+                'idTanaman' => $kd,
+                'idGen' => $request->gt,
+                'jk' => $request->jk,
+                'name' => $request->nt,
+                'stok' => $request->jb,
+                'status' => 'internal',
+            ]);
+        }
 
         return redirect()->route('trans2')
             ->with('success', 'Data Berhasil Ditambahkan');
@@ -165,6 +192,65 @@ class LabController extends Controller
         $request->validate([
             'status' => 'required',
         ]);
+
+        $cek = Persilangan::select('calon_nama,calon_kode,calon_gen,calon_jk')->where('calon_nama',$request->nt)->first();
+        $core =  trans2::find($id);
+
+        if ($request->status == 2) {
+            $idd = $core->persilangan->calon_kode;
+            Tanaman::find($idd)->delete();
+
+            $cln = [
+                'status_trans2' => $request->status,
+                'calon_kode' => null,
+                'calon_nama' => null,
+                'calon_gen' => null,
+                'calon_jk' => null,
+            ];
+            Persilangan::find($core->id_persilangan)->update($cln);
+        }else{
+            $dt = ['name' => $request->nt, 'jk' => $request->jk ];
+            $cekk = Tanaman::where($dt)->first();
+            // $cek = Tanaman::where(['name','=',$request->nama], ['jk','=',$request->jk])->first();
+
+            if (!empty($cekk)) {
+                $edit = [
+                    'status_trans2' => $request->status,
+                    'calon_kode' => $cekk->idTanaman,
+                    'calon_nama' => $request->nt,
+                    'calon_gen' => $request->gt,
+                    'calon_jk' => $request->jk,
+                ];
+
+                $id = $request->persilangan;
+                Persilangan::find($id)->update($edit);
+            }else{
+                $ck = Tanaman::select('*')->orderByDesc("idTanaman")->first();
+                $kd = $ck->idTanaman + 1;
+
+                $edit = [
+                    'status_trans2' => $request->status,
+                    'calon_kode' => $kd,
+                    'calon_nama' => $request->nt,
+                    'calon_gen' => $request->gt,
+                    'calon_jk' => $request->jk,
+                ];
+
+                $id = $request->persilangan;
+                Persilangan::find($id)->update($edit);
+
+                Tanaman::create([
+                    'idTanaman' => $kd,
+                    'idGen' => $request->gt,
+                    'jk' => $request->jk,
+                    'name' => $request->nt,
+                    'stok' => $request->jb,
+                    'status' => 'internal',
+                ]);
+            }
+        }
+
+
         $data = [
             'status' => $request->status,
             'jumlah_botol' => $request->jb,
@@ -179,7 +265,6 @@ class LabController extends Controller
             'calon_gen' => $request->gt,
             'calon_jk' => $request->jk,
         ];
-        $core =  trans2::find($id);
         Persilangan::find($core->id_persilangan)->update($edit);
 
         return redirect()->route('trans2')
@@ -204,7 +289,7 @@ class LabController extends Controller
     }
     public function create3()
     {
-        $silang = Persilangan::all();
+        $silang = trans2::all();
         $trans = trans2::orderBy('id_persilangan', 'desc')->get();
         return view('lab.3.tambah', compact('silang', 'trans'));
     }
@@ -239,6 +324,9 @@ class LabController extends Controller
             'tgl_pengerjaan' => $request->tgl,
         ]);
 
+        $st = ['qty' => $request->jb];
+        trans2::where('id_persilangan',$request->persilangan)->update($st);
+
         $edit = ['status_trans3' => $request->status, ];
         $id = $request->persilangan;
         Persilangan::find($id)->update($edit);
@@ -258,6 +346,7 @@ class LabController extends Controller
         $request->validate([
             'status' => 'required',
         ]);
+
         $data = [
             'status' => $request->status,
             'target' => $request->target,
@@ -268,6 +357,12 @@ class LabController extends Controller
         ];
 
         trans3::find($id)->update($data);
+        
+        $x = trans2::where('id_persilangan', $request->persilangan)->first();
+        $jml = $x->qty + $request->jb;
+        $st = ['qty' => $jml];
+        trans2::where('id_persilangan', $request->persilangan)->update($st);
+
         $edit = ['status_trans3' => $request->status, ];
         $core =  trans3::find($id);
         Persilangan::find($core->id_persilangan)->update($edit);

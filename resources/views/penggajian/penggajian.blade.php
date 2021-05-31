@@ -43,7 +43,7 @@
                     <div class="card-header">
                         <h3 class="card-title"> Data Penggajian</h3>
                         <div class="card-tools">
-                            @if (Auth::user()->role == 3)
+                            @if (Auth::user()->pegawai->role == 3)
                                 <a href="{{ url('penggajian/tambah') }}" class="btn btn-tool"> <i class="fas fa-plus"></i> </a>
                             @endif
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">

@@ -46,12 +46,6 @@
                     <form action="{{ url('persilangan/edit', [$val->kodePersilangan]) }}" method="post">
                         @csrf
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Tanggal</label>
-                                   <input type="date" class="form-control" name="tgl" id="tgl" value="{{ date('Y-m-d') }}">
-                                </div>
-                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Seed</label>

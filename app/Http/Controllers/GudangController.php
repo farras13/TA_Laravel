@@ -13,7 +13,7 @@ class GudangController extends Controller
 {
     public function index()
     {
-        $data = Tanaman::all();
+        $data = Tanaman::select(['idTanaman', 'idGen', 'jk', 'name', 'stok', 'status', 'show_status'])->get();
         return view('internal.index', compact('data'));
     }
 
@@ -94,10 +94,11 @@ class GudangController extends Controller
     public function add2(Request $request)
     {
 
-        $tgl = $request->tgl . ' ' . $request->tm;
+        $tgl = date('Y/m/d H:i:s');
         $dt = ['name' => $request->nama, 'jk' => $request->jk ];
         $cek = Tanaman::where($dt)->first();
         // $cek = Tanaman::where(['name','=',$request->nama], ['jk','=',$request->jk])->first();
+
 
         if (!empty($cek)) {
             $jml = $cek->stok + $request->jb;
@@ -106,6 +107,8 @@ class GudangController extends Controller
         }else{
             $ck = Tanaman::select('*')->orderByDesc("idTanaman")->first();
             $kd = $ck->idTanaman + 1;
+            // print_r($kd);die;
+
             Tanaman::create([
                 'idTanaman' => $kd,
                 'idGen' => $request->gen,
@@ -212,7 +215,7 @@ class GudangController extends Controller
     public function add3(Request $request)
     {
         $dt = Tanaman::find($request->idt);
-        $tgl = $request->tgl . ' ' . $request->tm;
+        $tgl = date('Y/m/d H:i:s');
         $jml = $dt->stok - $request->jb;
 
         $a = eksternal::create([

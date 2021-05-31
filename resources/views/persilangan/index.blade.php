@@ -70,7 +70,7 @@
                                 @foreach($persilangan as $per)
                                 <tr>
                                     <td> {{ $per->kodePersilangan }} </td>
-                                    <td> {{ $per->created_at }} </td>
+                                    <td> {{ date('d M Y H:i:s', strtotime($per->created_at))  }} </td>
                                     <td> {{ $per->tanaman->name }} </td>
                                     <td> {{ $per->tanamann->name }} </td>
                                     <td>

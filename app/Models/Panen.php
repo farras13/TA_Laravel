@@ -8,15 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Panen extends Model
 {
     protected $table = 'proses_buah';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $primaryKey = 'id_pb';
     protected $fillable = [
         'idPersilangan',
         'idAuth',
-        'tanggal_pengerjaan',
         'status',
         'keterangan',
-        'tanggal_input'
     ];
 
     public function user()

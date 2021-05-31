@@ -62,7 +62,7 @@
                                     <th>Nama</th>
                                     <th>Jumlah Tanaman</th>
                                     <th>Keterangan</th>
-                                    <th>Penanggungjawab</th>
+                                    <th>Penanggung Jawab</th>
                                     @if (Auth::user()->pegawai->role == 2)
                                     <th>Operasi</th>
                                     @endif
@@ -79,20 +79,19 @@
                                     <td> {{ $d->nama }} </td>
                                     <td> {{ $d->jumlah }} </td>
                                     <td> {{ $d->keterangan }} </td>
-                                    <td> {{ $d->user['name'] }} </td>
+                                    <td> {{ $d->user->pegawai->name }} </td>
                                     <td>
                                         @if (Auth::user()->pegawai->role == 2)
                                         <div class="btn-group">
-                                            <span class="btn btn-success">
+                                            {{-- <span class="btn btn-success">
                                                 <i style="color: #333" class="fas fa-plus"></i>
                                                 <a style="color: #333" href="{{ url('eksternal/out/tambah') }}">
                                                 <span>Tambah</span>
-                                              </span>
-                                              <button type="submit" class="btn btn-warning">
-                                              <i style="color: #333" class="fas fa-upload"></i>
-                                              <a style="color: #333" href="{{ url('eksternal/out/edit' , [$d->id]) }}">
-                                              <span>Edit</span>
-                                            </button>
+                                              </span> --}}
+                                              <a style="color: #333" class="btn btn-warning" href="{{ url('eksternal/out/edit' , [$d->id]) }}">
+                                                <i style="color: #333" class="fas fa-upload"></i>
+                                                <span>Edit</span>
+                                              </a>
                                           </div>
                                         @endif
                                     </td>

@@ -46,18 +46,6 @@
                     <form action="{{ url('eksternal/in/update', [$data->id]) }}" method="post">
                         @csrf
                         <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="tgl">Tanggal</label>
-                                <input type="date" name="tgl" id="tgl" class="form-control" value="<?=  date('Y-m-d', strtotime($data->tanggal_masuk)) ?>">
-                                {{-- <input type="time" name="tgl" id="tgl" class="form-control"> --}}
-
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Time picker:</label>
-                                    <input type="time" name="tm" id="tm" class="form-control datetimepicker-input" value="<?= date('H:i', strtotime($data->tanggal_masuk)) ?>">
-                                </div>
-                            </div>
                             <div class="col-md-12 mb-3">
                                 <label for="asal">Asal Barang</label>
                                 <input type="text" name="asal" id="asal" class="form-control" value="{{ $data->asju }}">
@@ -79,7 +67,7 @@
                             <!-- /.col -->
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>JK</label>
+                                    <label>Gen</label>
                                     <select class="form-control select2" name="jk" style="width: 100%;">
                                         <option value="seed" {{ $data->jk == 'seed' ? 'selected' : '' }}>Seed</option>
                                         <option value="pollen" {{ $data->jk == 'pollen' ? 'selected' : '' }}>Pollen</option>

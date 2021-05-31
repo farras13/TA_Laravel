@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Proses extends Model
 {
     protected $table = 'proses_kawin';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $primaryKey = 'id_pk';
     protected $fillable = [
         'idPersilangan',

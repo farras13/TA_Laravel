@@ -97,7 +97,8 @@ Route::group(['middleware' => 'auth'], function () {
     // trans 2
     Route::get('trans2', [LabController::class, 'trans2'])->name('trans2');
     Route::get('trans2/tambah', [LabController::class, 'create2']);
-    Route::get('trans3/getData/{id}', [LabController::class, 'getData']);
+    Route::get('trans2/getData/{id}', [LabController::class, 'getDataT']);
+    Route::get('trans2/getDataT/{id}', [LabController::class, 'getDataTa']);
     Route::post('trans2/add', [LabController::class, 'add2']);
     Route::get('trans2/edit/{id}', [LabController::class, 'edit2']);
     Route::post('trans2/update/{id}', [LabController::class, 'update2']);

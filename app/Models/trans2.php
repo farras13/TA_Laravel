@@ -8,12 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class trans2 extends Model
 {
     protected $table = 'proses_trans2';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $primaryKey = 'id_pt2';
     protected $fillable = [
         'id_persilangan',
         'idAuth',
-        'tgl_pengerjaan',
         'jumlah_botol',
         'qty',
         'status',

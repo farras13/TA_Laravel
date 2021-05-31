@@ -12,7 +12,6 @@ class Persilangan extends Model
     protected $primaryKey = 'kodePersilangan';
     protected $fillable = [
         'kodePersilangan',
-        'tanggal',
         'seed',
         'pollen',
         'status_pk',

@@ -46,12 +46,6 @@
                     <form action="{{ url('kebun/panen/update', [$data->id_pb]) }}" method="post">
                         @csrf
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>Tanggal</label>
-                                   <input type="date" class="form-control" name="tgl" id="tgl" value="{{ $data->tanggal_pengerjaan }}" readonly>
-                                </div>
-                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Persilangan</label>

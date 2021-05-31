@@ -40,9 +40,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data tanaman anggrek yang berasal dari persilangan yang dilakukan di kebun anggrek PT Sari Bumi Mulya</h3>
+                        <h3 class="card-title">Data tanaman anggrek yang ada di kebun anggrek PT Sari Bumi Mulya </h3>
                         <div class="card-tools">
-                            <a href="{{ url('gudang/tambah') }}" class="btn btn-tool"> <i class="fas fa-plus"></i> </a>
+                            {{-- <a href="{{ url('gudang/tambah') }}" class="btn btn-tool"> <i class="fas fa-plus"></i> </a> --}}
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
                             </button>
@@ -82,12 +82,11 @@
                                     <td>
                                         @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 3)
                                         <div class="btn-group">
-                                            <button type="submit" class="btn btn-warning">
-                                              <i class="fas fa-upload"></i>
-                                              <a style="color: #333" href="{{ url('gudang/detail', [$d->idTanaman]) }}">
-                                              <span>Details</span>
-                                            </button>
-                                            </div>
+                                            <a style="color: #333" href="{{ url('gudang/detail', [$d->idTanaman]) }}"  class="btn btn-warning">
+                                                <i class="fas fa-upload"></i>
+                                                <span>Details</span>
+                                            </a>
+                                        </div>
                                         @endif
                                     </td>
                                 </tr>

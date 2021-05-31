@@ -63,7 +63,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="jk">JK</label>
+                                <label for="jk">Gender</label>
                                 <select class="form-control" name="jk" id="jk">
                                     <option value="seed" {{ $data->jk == "seed" ? 'selected' : '' }}>Seed</option>
                                     <option value="pollen" {{ $data->jk == "pollen" ? 'selected' : '' }}>Pollen</option>

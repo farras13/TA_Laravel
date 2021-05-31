@@ -43,7 +43,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Data tanaman yang telah melakukan persilangan dan sedang melalui proses Trans 1</h3>
                         <div class="card-tools">
-                            @if (Auth::user()->role == 2 || Auth::user()->role == 1)
+                            @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
                                 <a href="{{ url('trans/tambah') }}" class="btn btn-tool"> <i class="fas fa-plus"></i> </a>
                             @endif
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -67,7 +67,7 @@
                                     <th>Berhasil</th>
                                     <th>Status</th>
                                     <th>Keterangan</th>
-                                    <th>Peagungjawab</th>
+                                    <th>Penanggung Jawab</th>
                                     @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
                                     <th>Operasi</th>
                                     @endif
@@ -91,7 +91,7 @@
                                             @endif
                                     </td>
                                     <td>{{ $d->keterangan }}</td>
-                                    <td>{{ $d->user['name'] }}</td>
+                                    <td>{{ $d->user->pegawai->name }}</td>
 
                                     <td>
                                         @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)

@@ -48,19 +48,13 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label>Tanggal</label>
-                                   <input type="date" class="form-control" name="tgl" id="tgl" value="{{ $data->tgl_pengerjaan }}" readonly>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
                                     <label>Persilangan</label>
                                     <select class="form-control select2" name="persilangan" style="width: 100%;" disabled>
                                         <option value="{{ $data->idPersilangan }}"> {{ $data->idPersilangan .' | '. $data->persilangan->tanaman->name .' x '. $data->persilangan->tanamann->name }} </option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 mb-3">
                                 <label for="jb">Jumlah Botol</label>
                                 <input type="number" name="jb" id="jb" class="form-control" min="0" value="{{ $data->jumlah_botol }}">
                             </div>
@@ -77,8 +71,8 @@
                                 <div class="form-group">
                                     <label>Status</label>
                                     <select class="form-control" name="status" style="width: 100%;">
-                                        <option value="1">Berhasil</option>
-                                        <option value="2">Gagal</option>
+                                        <option value="1" {{ $data->status == 1 ? 'selected' : '' }}>Berhasil</option>
+                                        <option value="2" {{ $data->status == 2 ? 'selected' : '' }}>Gagal</option>
                                     </select>
                                 </div>
                             </div>
@@ -142,6 +136,7 @@
 
         var qty = jb - kontam;
         var input2 = document.getElementById("qty");
+        input2.value = qty;
         input2.setAttribute("max", qty);
         input2.setAttribute("min", qty);
 
@@ -156,6 +151,8 @@
         var ktm = document.getElementById("ktm");
         ktm.setAttribute("max", qty);
         ktm.setAttribute("min", qty);
+        ktm.value = qty;
+
 
       });
 

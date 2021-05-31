@@ -46,18 +46,16 @@
                     <form action="{{ url('eksternal/in/add') }}" method="post">
                         @csrf
                         <div class="row">
-                            <div class="col-md-6 mb-3">
+                            {{-- <div class="col-md-6 mb-3">
                                 <label for="tgl">Tanggal</label>
                                 <input type="date" name="tgl" id="tgl" class="form-control" value="<?= date('Y-m-d') ?>">
-                                {{-- <input type="time" name="tgl" id="tgl" class="form-control"> --}}
-
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Time picker:</label>
                                     <input type="time" name="tm" id="tm" class="form-control datetimepicker-input" value="<?= date('H:i') ?>">
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-md-12 mb-3">
                                 <label for="asal">Asal Barang</label>
                                 <input type="text" name="asal" id="asal" class="form-control">
