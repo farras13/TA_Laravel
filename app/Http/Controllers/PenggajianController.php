@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absensi;
 use App\Models\Gen;
+use App\Models\Jabatan;
+use App\Models\pegawai;
 use App\Models\Penggajian;
+use App\Models\Tunjangan;
 use App\Models\User;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\Constraint\Count;
 
 class PenggajianController extends Controller
 {
@@ -18,17 +23,45 @@ class PenggajianController extends Controller
 
     public function create()
     {
-        $data = User::all();
-        return view('penggajian.tambah', compact('data'));
+        $data = pegawai::all();
+        $tunjangan = Tunjangan::all();
+
+        return view('penggajian.tambah', compact('data', 'tunjangan'));
+    }
+    public function getData($id)
+    {
+        $a = pegawai::find($id);
+        // print_r($a->jabatan);
+        $empData['data'] = Jabatan::select('*')
+            ->where('id_jabatan', $a->jabatan)
+            ->get();
+
+        return response()->json($empData);
+    }
+
+    public function countAbsen($id)
+    {
+        $empData['data'] = Absensi::select('idPegawai', 'created_at')
+            ->where('idPegawai', '=', $id)
+            ->whereMonth('created_at', date('m'))
+            ->whereYear('created_at', date('Y'))
+            ->get();
+        // $empData['data'] = array('c' => $emp->count(), );
+        return response()->json($empData);
     }
 
     public function add(Request $request)
     {
+        $a = Tunjangan::find($request->tj);
+
+        $total = $a->nominal + ($request->gp * $request->ta) - $request->ut;
         Penggajian::create([
             'id_pegawai' => $request->idp,
             'gaji_pokok' => $request->gp,
+            'kehadiran' => $request->ta,
             'tunjangan' => $request->tj,
-            'bonus' => $request->bns,
+            'hutang' => $request->ut,
+            'total' => $total,
         ]);
 
         return redirect()->route('penggajian')
@@ -38,7 +71,7 @@ class PenggajianController extends Controller
     public function edit($id)
     {
         $data = Penggajian::find($id)->first();
-        $user = User::all();
+        $user = pegawai::all();
         return view('penggajian.edit', compact('data', 'user'));
     }
 
@@ -66,10 +99,7 @@ class PenggajianController extends Controller
 
     public function print($id)
     {
-        $data = Penggajian::find($id)->first();
+        $data = Penggajian::find($id);
         return view('penggajian.print', compact('data'));
     }
-
 }
-
-

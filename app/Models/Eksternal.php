@@ -29,7 +29,7 @@ class Eksternal extends Model
         return $this->belongsTo('App\Models\user', 'author');
     }
 
-    public function guen()
+    public function gen()
     {
         return $this->belongsTo('App\Models\Gen', 'gen');
     }

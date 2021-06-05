@@ -86,8 +86,8 @@
                                     </td>
                                     <td>{{ $d->keterangan }}</td>
                                     <td>{{ $d->user->pegawai->name }}</td>
+                                    @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 0)
                                     <td>
-                                        @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 0)
                                             <a class="nav-link" data-toggle="dropdown" href="#">
                                                 <i class="fas fa-bars"></i>
                                             </a>
@@ -101,8 +101,8 @@
                                                     <i class="fas fa-eraser"></i> Hapus
                                                 </a>
                                             </div>
-                                        @endif
                                     </td>
+                                    @endif
                                 </tr>
                                 <?php $n++; ?>
                             @endforeach

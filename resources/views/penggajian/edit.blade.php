@@ -50,27 +50,32 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Pegawai</label>
-                                    <select class="form-control select2" name="idp" style="width: 100%;">
+                                    <select class="form-control select2" name="idp" id="idp" style="width: 100%;" >
                                         @foreach ($user as $d)
-                                            <option <?php if( $d['id '] == $data->id_pegawai) echo 'selected'; ?> value="{{ $d->id }}"> {{ $d->name}} </option>
+                                            <option <?php if( $d['id'] == $data->id_pegawai) echo 'selected'; ?> value="{{ $d->id }}"> {{ $d->name}} </option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <label for="jb">Gaji Pokok</label>
-                                <input type="number" name="gp" id="gp" class="form-control" min="0" value="{{ $data->gaji_pokok}}">
+                                <input type="number" name="gp" id="gp" class="form-control" min="0" value="{{ $data->gaji_pokok}}" readonly>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="ta">Total Kehadiran</label>
+                                <input type="number" name="ta" id="ta" class="form-control" value="{{ $data->kehadiran}}" readonly>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="status">tunjangan</label>
-                                <input type="number" name="tj" id="tj" class="form-control" min="0" value="{{ $data->tunjangan}}">
+                                <input type="number" name="tj" id="tj" class="form-control" min="0" value="{{ $data->tj->nominal}}" readonly>
                             </div>
                             <div class="col-md-12 mb-3" >
-                                <label for="ket">Bonus</label>
-                                <input type="number" name="bns" id="bns" class="form-control" min="0" value="{{ $data->bonus}}">
+                                <label for="ket">hutang</label>
+                                <input type="number" name="ut" id="ut" class="form-control" min="0" value="{{ $data->hutang}}">
                             </div>
 
                         </div>
+                     
                         <button type="submit" class="btn btn-primary float-right ml-3">Submit</button>
                         <a href="{{ route('penggajian') }}" class="btn btn-danger float-right">Cancel</a>
 

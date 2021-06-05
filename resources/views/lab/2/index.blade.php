@@ -64,9 +64,12 @@
                                     <th>Persilangan</th>
                                     <th>Status</th>
                                     <th>Jumlah Botol</th>
+                                    <th>Botol Kontam</th>
+                                    <th>Botol Berhasil</th>
                                     <th>Stok Sisa</th>
+                                    <th>last_update</th>
                                     <th>Keterangan</th>
-                                    <th>Penanggung Jawab Jawab</th>
+                                    <th>Penanggung Jawab</th>
                                     @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
                                     <th>Operasi</th>
                                     @endif
@@ -87,29 +90,31 @@
                                             @endif
                                     </td>
                                     <td>{{ $d->jumlah_botol }}</td>
+                                    <td>{{ $d->kontam }}</td>
+                                    <td>{{ $d->berhasil }}</td>
                                     <td>{{ $d->jumlah_botol - $d->qty }}</td>
+                                    <td>{{ date('d M Y H:i:s', strtotime($d->updated_at)) }}</td>
                                     <td>{{ $d->keterangan }}</td>
                                     <td>{{ $d->user->pegawai->name }}</td>
-
+                                    @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
                                     <td>
-                                        @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
-                                            <a class="nav-link" data-toggle="dropdown" href="#">
-                                                <i class="fas fa-bars"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                                                <div class="dropdown-divider"></div>
-                                                @if ($d->persilangan->status_trans3 == 0 || $d->persilangan->status_trans3 == 3)
-                                                    <a href="{{ url('trans2/edit', [$d->id_pt2]) }}" class="dropdown-item">
-                                                        <i class="fas fa-pen"></i> Edit
-                                                    </a>
-                                                @endif
-                                                <div class="dropdown-divider"></div>
-                                                <a href="{{ url('trans2/destroy', [$d->id_pt2]) }}" class="dropdown-item">
-                                                    <i class="fas fa-eraser"></i> Hapus
+                                        <a class="nav-link" data-toggle="dropdown" href="#">
+                                            <i class="fas fa-bars"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                                            <div class="dropdown-divider"></div>
+                                            @if ($d->persilangan->status_trans3 == 0 || $d->persilangan->status_trans3 == 3)
+                                                <a href="{{ url('trans2/edit', [$d->id_pt2]) }}" class="dropdown-item">
+                                                    <i class="fas fa-pen"></i> Edit
                                                 </a>
-                                            </div>
-                                        @endif
+                                            @endif
+                                            <div class="dropdown-divider"></div>
+                                            <a href="{{ url('trans2/destroy', [$d->id_pt2]) }}" class="dropdown-item">
+                                                <i class="fas fa-eraser"></i> Hapus
+                                            </a>
+                                        </div>
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>
@@ -120,9 +125,12 @@
                                     <th>Persilangan</th>
                                     <th>Status</th>
                                     <th>Jumlah Botol</th>
+                                    <th>Botol Kontam</th>
+                                    <th>Botol Berhasil</th>
                                     <th>Stok Sisa</th>
+                                    <th>last_update</th>
                                     <th>Keterangan</th>
-                                    <th>Penanggungjawab</th>
+                                    <th>Penanggung Jawab</th>
                                     @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
                                     <th>Operasi</th>
                                     @endif

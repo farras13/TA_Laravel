@@ -10,12 +10,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Masuk Eksternal</h1>
+            <h1>Data Absensi</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Data-Masuk</li>
+              <li class="breadcrumb-item active">Absensi</li>
             </ol>
           </div>
           <div class="col-sm-7"> </div>
@@ -40,9 +40,9 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data masuk dari tanaman yang berasal dari luar kebun anggrek PT Sari Bumi Mulya</h3>
+                        <h3 class="card-title">Tabel data Absensi pegawai</h3>
                         <div class="card-tools">
-                            <a href="{{ url('eksternal/in/tambah') }}" class="btn btn-tool"> <i class="fas fa-plus"></i> </a>
+                            <a href="{{ url('absensi/tambah') }}" class="btn btn-success"> <i class="fas fa-plus"></i> Tambah </a>
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
                             </button>
@@ -57,62 +57,47 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Tanggal</th>
-                                    <th>Asal</th>
-                                    <th>Nama</th>
-                                    <th>Jumlah Tanaman</th>
+                                    <th>Nama Pegawai</th>
                                     <th>Keterangan</th>
-                                    <th>Penanggung Jawab</th>
-                                    <th>Last_Update</th>
-                                    @if (Auth::user()->pegawai->role == 2)
+                                    <th>Log Absensi</th>
+                                    @if (Auth::user()->pegawai->role == 3)
                                     <th>Operasi</th>
                                     @endif
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $n = 1; ?>
-                                @foreach($data as $d)
-                                    @if ($d->status == "Masuk")
+                                @foreach($data as $per)
                                 <tr>
                                     <td> {{ $n }} </td>
-                                    <td> {{ date('d-m-Y H:i', strtotime($d->tanggal_masuk)) }}</td>
-                                    <td> {{ $d->asju }}</td>
-                                    <td> {{ $d->nama }}</td>
-                                    <td> {{ $d->jumlah }} </td>
-                                    <td> {{ $d->keterangan }}</td>
-                                    <td> {{ $d->user->pegawai->name }}</td>
-                                    <td> {{ $d->user->pegawai->name }}</td>
-                                    @if (Auth::user()->pegawai->role == 2)
+                                    <td> {{ $per->pegawai['name'] }} </td>
+                                    <td> {{ $per->keterangan }} </td>
+                                    <td> {{ date('d M Y H:i:s', strtotime($per->created_at)) }}</td>
+                                    @if (Auth::user()->pegawai->role == 3)
                                     <td>
                                         <div class="btn-group">
-                                            {{-- <span class="btn btn-success">
-                                                <i style="color: #333" class="fas fa-plus"></i>
-                                                <a style="color: #333" href="{{ url('eksternal/in/tambah') }}">
-                                                <span>Tambah</span>
-                                              </span> --}}
-                                              <a style="color: #333" href="{{ url('eksternal/in/edit' , [$d->id]) }}" type="submit" class="btn btn-warning">
-                                                <i class="fas fa-upload"></i>
-                                                <span>Edit</span>
-                                              </a>
+                                                <a style="color: #333" href="{{ url('absensi/edit', [$per->idAbsen]) }}" class="btn btn-warning">
+                                                    <i style="color: #333" class="fas fa-upload"></i>
+                                                    <span>Edit</span>
+                                                </a>
+                                                <a style="color: #333" href="{{ url('absensi/destroy', [$per->idAbsen]) }}" class="btn btn-danger">
+                                                    <i style="color: #333" class="fas fa-times-circle"></i>
+                                                    <span>Delete</span>
+                                                </a>
                                           </div>
                                     </td>
                                     @endif
                                 </tr>
                                 <?php $n++; ?>
-                                @endif
                             @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <th>No</th>
-                                    <th>Tanggal</th>
-                                    <th>Asal</th>
-                                    <th>Nama</th>
-                                    <th>Jumlah Tanaman</th>
+                                    <th>Nama Pegawai</th>
                                     <th>Keterangan</th>
-                                    <th>Penanggungjawab</th>
-                                    <th>Last_Update</th>
-                                    @if (Auth::user()->pegawai->role == 2)
+                                    <th>Log Absensi</th>
+                                    @if (Auth::user()->pegawai->role == 3)
                                     <th>Operasi</th>
                                     @endif
                                 </tr>
@@ -149,23 +134,12 @@
 <script>
     $(function () {
       $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "responsive": true, "lengthChange": true, "autoWidth": false,
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
         "buttons": [
             {extend: 'colvis', postfixButtons: [ 'colvisRestore' ] },
-            {extend: 'pdf', title:'Data Masuk PT Sari Bumi Mulya', exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6],
-                modifier: {
-                    page: 'current'
-                }
-            }},
-            {extend: 'excel', title: 'Data Masuk PT Sari Bumi Mulya', exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6],
-                modifier: {
-                    page: 'current'
-                }
-            }},
-            {extend:'print',title: 'Data Masuk PT Sari Bumi Mulya', exportOptions: {
-                columns: [0, 1, 2, 3, 4, 5, 6],
+            {extend:'print',title: 'Data Gen PT Sari Bumi Mulya', exportOptions: {
+                columns: [0, 1, 2, 3],
                 modifier: {
                     page: 'current'
                 }

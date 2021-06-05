@@ -24,4 +24,14 @@ class pegawai extends Model
     {
         return $this->hasOne('App\Models\User');
     }
+
+    public function absen()
+    {
+        return $this->hasOne('App\Models\Absensi');
+    }
+
+    public function jabatan()
+    {
+        return $this->belongsTo('App\Model\jabatan');
+    }
 }

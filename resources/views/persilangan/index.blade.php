@@ -102,23 +102,23 @@
                                         @endif
                                         {{-- {{ $per->status_trans }} --}}
                                     </td>
+                                    @if (Auth::user()->pegawai->role == 2)
                                     <td>
-                                        @if (Auth::user()->pegawai->role == 2)
-                                            <a class="nav-link" data-toggle="dropdown" href="#">
-                                                <i class="fas fa-bars"></i>
+                                        <a class="nav-link" data-toggle="dropdown" href="#">
+                                            <i class="fas fa-bars"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                                            <div class="dropdown-divider"></div>
+                                            <a href="{{ url('persilangan/form-edit', [$per->kodePersilangan]) }}" class="dropdown-item">
+                                                <i class="fas fa-pen"></i> Edit
                                             </a>
-                                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                                                <div class="dropdown-divider"></div>
-                                                <a href="{{ url('persilangan/form-edit', [$per->kodePersilangan]) }}" class="dropdown-item">
-                                                    <i class="fas fa-pen"></i> Edit
-                                                </a>
-                                                <div class="dropdown-divider"></div>
-                                                <a href="{{ url('persilangan/hapus', [$per->kodePersilangan]) }}" class="dropdown-item">
-                                                    <i class="fas fa-eraser"></i> Hapus
-                                                </a>
-                                            </div>
-                                        @endif
+                                            <div class="dropdown-divider"></div>
+                                            <a href="{{ url('persilangan/hapus', [$per->kodePersilangan]) }}" class="dropdown-item">
+                                                <i class="fas fa-eraser"></i> Hapus
+                                            </a>
+                                        </div>
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>

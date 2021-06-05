@@ -132,7 +132,7 @@
                 <?php
                     $date=date_create( date('Y-m-d') );
                     $tgl = date_format($date,"d M Y");
-                    $t = $data->gaji_pokok + $data->tunjangan + $data->bonus ;
+                    $t = $data->gaji_pokok + $data->tj->nominal + $data->bonus ;
                     $pjk = $t * 5 / 100 ;
                     $ttl = $t - $pjk;
                 ?>
@@ -157,9 +157,9 @@
 				</div>
 
 				<div class="col-xs-4 to">
-                    <p class="lead marginbottom">To : {{ $data->user->name }} </p>
-                    <p>{{ $data->user->alamat }}</p>
-                    <p>No Telp. {{ $data->user->hp }}</p>
+                    <p class="lead marginbottom">To : {{ $data->pegawai->name }} </p>
+                    <p>{{ $data->pegawai->alamat }}</p>
+                    <p>No Telp. {{ $data->pegawai->hp }}</p>
 
 			    </div>
 
@@ -167,11 +167,11 @@
 					<p>Date: {{ $tgl }}</p>
                     <p>Total: Rp.{{ number_format($t, 2, ',', '.') }}</p>
                     <p>Jabatan:
-                        @if ( $data->user->role == 3)
+                        @if ( $data->pegawai->role == 3)
                             Owner
-                        @elseif ( $data->user->role == 2)
+                        @elseif ( $data->pegawai->role == 2)
                             Admin
-                        @elseif ( $data->user->role == 0)
+                        @elseif ( $data->pegawai->role == 0)
                             Petugas Kebun
                         @endif
                     </p>
@@ -196,13 +196,8 @@
                       </tr>
                       <tr>
                         <td class="text-center">2</td>
-                        <td>Tunjangan</td>
-                        <td class="text-right">Rp. {{ number_format($data->tunjangan, 2, ',', '.') }}</td>
-                      </tr>
-                      <tr>
-                        <td class="text-center">3</td>
-                        <td>Bonus</td>
-                        <td class="text-right">Rp. {{ number_format($data->bonus, 2, ',', '.') }}</td>
+                        <td>Tunjangan {{ $data->tj->tunjangan }}</td>
+                        <td class="text-right">Rp. {{ number_format($data->tj->nominal, 2, ',', '.') }}</td>
                       </tr>
                      </tbody>
                   </table>

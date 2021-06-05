@@ -23,36 +23,38 @@
 <!--===============================================================================================-->
 </head>
 <body>
-    @if (Session::has('error'))
-    <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">×</span>
-        </button>
-        {{ Session::get('error') }}
-    </div>
-@endif
-@if(session('errors'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        Something it's wrong:
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">×</span>
-        </button>
-        <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-        </ul>
-    </div>
-@endif
+
 	<div class="limiter">
 		<div class="container-login100">
+
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
 					<img src="{{ asset('template_login') }}/images/img-01.png" alt="IMG">
 				</div>
 
 				<form class="login100-form validate-form" action="{{ route('login') }}" method="post">
-					<span class="login100-form-title">
+                    @if (Session::has('error'))
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        {{ Session::get('error') }}
+                    </div>
+                    @endif
+                    @if(session('errors'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Something it's wrong:
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <span class="login100-form-title">
 						Login Kebun Anggrek Singosari
 					</span>
                     @csrf

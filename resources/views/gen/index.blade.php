@@ -70,8 +70,8 @@
                                     <td> {{ $per->idGen }} </td>
                                     <td> {{ $per->gen }} </td>
                                     <td> {{ $per->keterangan }} </td>
+                                    @if (Auth::user()->pegawai->role == 2)
                                     <td>
-                                        @if (Auth::user()->pegawai->role == 2)
                                         <div class="btn-group">
 
                                                 <a style="color: #333" href="{{ url('gen/edit', [$per->idGen]) }}" class="btn btn-warning">
@@ -83,8 +83,8 @@
                                                     <span>Delete</span>
                                                 </a>
                                           </div>
-                                        @endif
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>

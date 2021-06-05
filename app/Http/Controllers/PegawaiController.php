@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jabatan;
 use App\Models\pegawai;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -91,8 +92,9 @@ class PegawaiController extends Controller
     {
         $del = array('id_pegawai' => $id, );
         $data = array('aktif' => 1, );
-        pegawai::find($id)->update($data);
-        User::where($del)->update($data);
+        $a = pegawai::find($id)->delete();
+        // print_r($a);die;
+        // User::where($del)->update($data);
         return redirect()->route('pegawai')
             ->with('success', 'Data Berhasil Dihapus');
     }
@@ -147,5 +149,52 @@ class PegawaiController extends Controller
         User::find($id)->update($data);
         return redirect()->route('akun')
                 ->with('success','Product updated successfully');
+    }
+
+    public function jabatan()
+    {
+        $data = Jabatan::all();
+        return view('jabatan/index', compact('data'));
+    }
+
+    public function createJ()
+    {
+        return view('jabatan/tambah');
+    }
+
+    public function editJ($id)
+    {
+        $p = Jabatan::find($id);
+        return view('jabatan/edit', compact('p'));
+    }
+
+    public function addJ (Request $request)
+    {
+        pegawai::create([
+            'jabatan' => ucwords(strtolower($request->nj)),
+            'gaji_pokok' => $request->gp,
+        ]);
+
+        return redirect()->route('jabatan')
+        ->with('success', 'Data Berhasil Ditambahkan');
+    }
+
+    public function updateJ(Request $request, $id)
+    {
+        $data = [
+            'jabatan' => ucwords(strtolower($request->nj)),
+            'gaji_pokok' => $request->gp,
+        ];
+
+        Jabatan::find($id)->update($data);
+        return redirect()->route('jabatan')
+                        ->with('success','Data updated successfully');
+    }
+
+    public function destroyJ($id)
+    {
+        Jabatan::find($id)->delete();
+        return redirect()->route('jabatan')
+            ->with('success', 'Data Berhasil Dihapus');
     }
 }

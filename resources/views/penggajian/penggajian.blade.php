@@ -64,7 +64,7 @@
                                     <th>Nama Pegawai</th>
                                     <th>Gaji Pokok</th>
                                     <th>Tunjangan</th>
-                                    <th>Bonus</th>
+                                    <th>Hutang</th>
                                     <th>Jabatan</th>
                                     <th>Operasi</th>
                                 </tr>
@@ -74,16 +74,16 @@
                                 <tr>
                                     <td> {{ $d->id_gaji }} </td>
                                     <td> {{ $d->id_pegawai }} </td>
-                                    <td>{{ $d->user->name }}</td>
+                                    <td>{{ $d->pegawai->name }}</td>
                                     <td>Rp.{{ number_format($d->gaji_pokok, 2, ',', '.') }}</td>
-                                    <td>Rp.{{ number_format($d->tunjangan, 2, ',', '.') }}</td>
-                                    <td>Rp.{{ number_format($d->bonus, 2, ',', '.') }}</td>
+                                    <td>Rp.{{ number_format($d->tj->nominal, 2, ',', '.') }}</td>
+                                    <td>Rp.{{ number_format($d->hutang, 2, ',', '.') }}</td>
                                     <td>
-                                        @if ( $d->user->role == 3)
+                                        @if ( $d->pegawai->role == 3)
                                             Owner
-                                        @elseif ( $d->user->role == 2)
+                                        @elseif ( $d->pegawai->role == 2)
                                             Admin
-                                        @elseif ( $d->user->role == 0)
+                                        @elseif ( $d->pegawai->role == 0)
                                             Petugas Kebun
                                         @endif
 

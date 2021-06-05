@@ -15,6 +15,8 @@ class trans2 extends Model
         'idAuth',
         'jumlah_botol',
         'qty',
+        'kontam',
+        'berhasil',
         'status',
         'keterangan'
     ];

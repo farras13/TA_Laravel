@@ -67,6 +67,7 @@
                                     <th>Berhasil</th>
                                     <th>Kontam</th>
                                     <th>Status</th>
+                                    <th>Last Update</th>
                                     <th>Keterangan</th>
                                     <th>Penanggung Jawab</th>
                                     @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
@@ -92,26 +93,26 @@
                                                 Gagal
                                             @endif
                                     </td>
+                                    <td>{{ date('d M Y H:i:s', strtotime($d->updated_at)) }}</td>
                                     <td>{{ $d->keterangan }}</td>
                                     <td>{{ $d->user->pegawai->name }}</td>
-
+                                    @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
                                     <td>
-                                        @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)
-                                            <a class="nav-link" data-toggle="dropdown" href="#">
-                                                <i class="fas fa-bars"></i>
+                                        <a class="nav-link" data-toggle="dropdown" href="#">
+                                            <i class="fas fa-bars"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                                            <div class="dropdown-divider"></div>
+                                            <a href="{{ url('trans3/edit', [$d->id_pt3]) }}" class="dropdown-item">
+                                                <i class="fas fa-pen"></i> Edit
                                             </a>
-                                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                                                <div class="dropdown-divider"></div>
-                                                <a href="{{ url('trans3/edit', [$d->id_pt3]) }}" class="dropdown-item">
-                                                    <i class="fas fa-pen"></i> Edit
-                                                </a>
-                                                <div class="dropdown-divider"></div>
-                                                <a href="{{ url('trans3/destroy', [$d->id_pt3]) }}" class="dropdown-item">
-                                                    <i class="fas fa-eraser"></i> Hapus
-                                                </a>
-                                            </div>
-                                        @endif
+                                            <div class="dropdown-divider"></div>
+                                            <a href="{{ url('trans3/destroy', [$d->id_pt3]) }}" class="dropdown-item">
+                                                <i class="fas fa-eraser"></i> Hapus
+                                            </a>
+                                        </div>
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>
@@ -125,6 +126,7 @@
                                     <th>Berhasil</th>
                                     <th>Kontam</th>
                                     <th>Status</th>
+                                    <th>Last Update</th>
                                     <th>Keterangan</th>
                                     <th>Penanggung Jawab</th>
                                     @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 1)

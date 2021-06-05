@@ -8,18 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Penggajian extends Model
 {
     protected $table = 'penggajian';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $primaryKey = 'id_gaji';
     protected $fillable = [
         'id_pegawai',
         'gaji_pokok',
         'tunjangan',
-        'bonus',
+        'hutang',
+        'total',
     ];
 
-    public function user()
+    public function pegawai()
     {
-        return $this->belongsTo('App\Models\user', 'id_pegawai');
+        return $this->belongsTo('App\Models\pegawai', 'id_pegawai');
+    }
+
+    public function tj()
+    {
+        return $this->belongsTo('App\Models\tunjangan', 'tunjangan');
     }
 
 }

@@ -80,8 +80,8 @@
                                     <td> {{ $d->jumlah }} </td>
                                     <td> {{ $d->keterangan }} </td>
                                     <td> {{ $d->user->pegawai->name }} </td>
+                                    @if (Auth::user()->pegawai->role == 2)
                                     <td>
-                                        @if (Auth::user()->pegawai->role == 2)
                                         <div class="btn-group">
                                             {{-- <span class="btn btn-success">
                                                 <i style="color: #333" class="fas fa-plus"></i>
@@ -93,8 +93,8 @@
                                                 <span>Edit</span>
                                               </a>
                                           </div>
-                                        @endif
                                     </td>
+                                    @endif
                                 </tr>
                                 <?php $n++; ?>
                                 @endif

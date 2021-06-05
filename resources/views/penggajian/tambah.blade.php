@@ -49,26 +49,34 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Pegawai</label>
-                                    <select class="form-control select2" name="idp" style="width: 100%;">
+                                    <select class="form-control select2" name="idp" id="pgw" style="width: 100%;">
                                         @foreach ($data as $d)
-                                            <option value="{{ $d->id }}"> {{ $d->name}} </option>
+                                            <option value="{{ $d->id_pegawai }}"> {{ $d->name}} </option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-12 mb-3">
-                                <label for="jb">Gaji Pokok</label>
-                                <input type="number" name="gp" id="gp" class="form-control" min="100000">
+                            <div class="col-md-6 mb-3">
+                                <label for="gp">Gaji Pokok</label>
+                                <input type="number" name="gp" id="gp" class="form-control" readonly required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="ta">Total Kehadiran</label>
+                                <input type="number" name="ta" id="ta" class="form-control" readonly required>
                             </div>
                             <div class="col-md-12 mb-3">
-                                <label for="status">tunjangan</label>
-                                <input type="number" name="tj" id="tj" class="form-control" min="100000">
+                                <label for="status">Tunjangan</label>
+                                <select class="form-control select2" name="tj" id="tj" style="width: 100%;">
+                                    <option value=""></option>
+                                    @foreach ($tunjangan as $d)
+                                        <option value="{{ $d->idTunjangan }}"> {{ $d->tunjangan .' | '. $d->nominal}} </option>
+                                    @endforeach
+                                </select>
                             </div>
-                            <div class="col-md-12 mb-3" >
-                                <label for="ket">Bonus</label>
-                                <input type="number" name="bns" id="bns" class="form-control" min="100000">
+                            <div class="col-md-12 mb-3">
+                                <label for="ta">Total Hutang</label>
+                                <input type="number" name="ut" id="ut" class="form-control" min="0">
                             </div>
-
                         </div>
                         <button type="submit" class="btn btn-primary float-right ml-3">Submit</button>
                         <a href="{{ route('penggajian') }}" class="btn btn-danger float-right">Cancel</a>
@@ -100,5 +108,53 @@
             theme: 'bootstrap4'
         })
     });
+</script>
+<script>
+        $('#pgw').change(function(){
+           // Department id
+           var id = $(this).val();
+
+           // AJAX request
+           $.ajax({
+           url: 'getData/'+ id,
+           type: 'get',
+           dataType: 'json',
+               success: function(response){
+                var len = 0;
+                    if(response['data'] != null){
+                        len = response['data'].length;
+                    }
+                    if(len > 0){
+                    // Read data and create <option >
+                        for(var i=0; i<len; i++){
+                            var stok = response['data'][i].gaji_pokok;
+                            var input = document.getElementById("gp");
+                            input.value = stok;
+                            // input.setAttribute("min", stok);
+                        }
+                    }
+               }
+           });
+           $.ajax({
+           url: 'getDataT/'+ id,
+           type: 'get',
+           dataType: 'json',
+               success: function(response){
+                var len = 0;
+                    if(response['data'] != null){
+                        len = response['data'].length;
+                    }
+                    if(len > 0){
+                    // Read data and create <option >
+                        for(var i=0; i<len; i++){
+                            var stok = len;
+                            var input = document.getElementById("ta");
+                            input.value = stok;
+                            // input.setAttribute("min", stok);
+                        }
+                    }
+               }
+           });
+       });
 </script>
 @endsection

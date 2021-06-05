@@ -87,6 +87,16 @@
                                         <textarea type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat" required></textarea>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label>Jabatan</label>
+                                    <select class="custom-select form-control-border" id="role" name="role" required>
+                                        <option>---</option>
+                                        <option value="0">Kebun</option>
+                                        <option value="1">Lab</option>
+                                        <option value="2">Admin</option>
+                                        <option value="3">Owner</option>
+                                    </select>
+                                </div>
                                 <!-- /.form group -->
                                 <div class="form-group">
                                     <label>Foto</label>
@@ -99,7 +109,7 @@
                                 </div>
                             </div>
                             <!-- /.card-body -->
-                            <div class="card-body">
+                            {{-- <div class="card-body">
                                 <h4>Data Pegawai</h4>
                                 <div class="form-group">
                                     <label for=""><strong>Username</strong></label>
@@ -109,14 +119,14 @@
                                     <label for=""><strong>Password</strong></label>
                                     <input type="password" name="password" class="form-control" placeholder="Password" required>
                                 </div>
-                                {{-- <div class="form-group">
+                                <div class="form-group">
                                     <label>Status Kepegawaian</label>
                                     <select class="custom-select form-control-border" id="StatusPegawai" name="aktif" required>
                                         <option>---</option>
                                         <option value="0">Aktif</option>
                                         <option value="1">Tidak Aktif</option>
                                     </select>
-                                </div> --}}
+                                </div>
                                 <div class="form-group">
                                     <label>Jabatan</label>
                                     <select class="custom-select form-control-border" id="role" name="role" required>
@@ -127,7 +137,7 @@
                                         <option value="3">Owner</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                             </div>

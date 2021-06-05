@@ -130,8 +130,21 @@
                             <p> Penggajian </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('jabatan') }}" class="nav-link">
+                            <i class="nav-icon fas fa-money-check" aria-hidden="true"></i>
+                            <p> Jabatan </p>
+                        </a>
+                    </li>
                     @endif
-
+                    @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 3)
+                        <li class="nav-item">
+                            <a href="{{ route('absensi') }}" class="nav-link">
+                                <i class="nav-icon fas fa-money-check" aria-hidden="true"></i>
+                                <p> Absensi </p>
+                            </a>
+                        </li>
+                    @endif
                     @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 3)
                     <li class="nav-item">
                         <a href="#" class="nav-link">

@@ -79,16 +79,16 @@
                                     <td> {{ $d->jk }} </td>
                                     <td>{{ $d->stok }}</td>
                                     <td>{{ $d->status }}</td>
+                                    @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 3)
                                     <td>
-                                        @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 3)
                                         <div class="btn-group">
                                             <a style="color: #333" href="{{ url('gudang/detail', [$d->idTanaman]) }}"  class="btn btn-warning">
                                                 <i class="fas fa-upload"></i>
                                                 <span>Details</span>
                                             </a>
                                         </div>
-                                        @endif
                                     </td>
+                                    @endif
                                 </tr>
                                 <?php $n++; ?>
                             @endforeach

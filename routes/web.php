@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\GenController;
 use App\Http\Controllers\GudangController;
 use App\Http\Controllers\HomeController;
@@ -41,11 +42,31 @@ Route::group(['middleware' => 'auth'], function () {
     //Penggajian
     Route::get('penggajian', [PenggajianController::class, 'index'])->name('penggajian');
     Route::get('penggajian/tambah', [PenggajianController::class, 'create']);
+    Route::get('penggajian/getData/{id}', [PenggajianController::class, 'getData']);
+    Route::get('penggajian/getDataT/{id}', [PenggajianController::class, 'countAbsen']);
     Route::post('penggajian/add', [PenggajianController::class, 'add']);
     Route::get('penggajian/edit/{id}', [PenggajianController::class, 'edit']);
     Route::post('penggajian/update/{id}', [PenggajianController::class, 'update']);
     Route::get('penggajian/destroy/{id}', [PenggajianController::class, 'destroy']);
     Route::get('penggajian/print/{id}', [PenggajianController::class, 'print']);
+
+    //Absensi
+    Route::get('absensi', [AbsensiController::class, 'index'])->name('absensi');
+    Route::get('absensi/tambah', [AbsensiController::class, 'create']);
+    Route::post('absensi/add', [AbsensiController::class, 'add']);
+    Route::get('absensi/edit/{id}', [AbsensiController::class, 'edit']);
+    Route::post('absensi/update/{id}', [AbsensiController::class, 'update']);
+    Route::get('absensi/destroy/{id}', [AbsensiController::class, 'destroy']);
+    // Route::get('absensi/print/{id}', [AbsensiController::class, 'print']);
+
+    //jabatan
+    Route::get('jabatan', [PegawaiController::class, 'jabatan'])->name('jabatan');
+    Route::get('jabatan/tambah', [PegawaiController::class, 'createJ']);
+    Route::post('jabatan/add', [PegawaiController::class, 'addJ']);
+    Route::get('jabatan/edit/{id}', [PegawaiController::class, 'editJ']);
+    Route::post('jabatan/update/{id}', [PegawaiController::class, 'updateJ']);
+    Route::get('jabatan/destroy/{id}', [PegawaiController::class, 'destroyJ']);
+
     //akun
     Route::get('akun', [PegawaiController::class, 'akun'])->name('akun');
     Route::get('akun/tambah', [PegawaiController::class, 'formAkun']);
