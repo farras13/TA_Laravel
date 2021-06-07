@@ -32,14 +32,14 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
   <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-teal">
+    <nav class="main-header navbar navbar-expand navbar-teal">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
              <li class="nav-item d-none d-sm-inline-block">
-                <a href="{{ route('home') }}" class="nav-link">Home</a>
+                <a href="{{ route('home') }}" class="nav-link" style="color: white">Home</a>
             </li>
             {{--<li class="nav-item d-none d-sm-inline-block">
                 <a href="#" class="nav-link">Contact</a>
@@ -49,17 +49,34 @@
         <ul class="navbar-nav ml-auto">
             <!-- Notifications Dropdown Menu -->
             <li class="nav-item">
-                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                <a class="nav-link d-none d-sm-inline-block" id="tanggalwaktu" style="color: white"></a>
+            <script>
+            var tw = new Date();
+            if (tw.getTimezoneOffset() == 0) (a=tw.getTime() + ( 7 *60*60*1000))
+            else (a=tw.getTime());
+            tw.setTime(a);
+            var tahun= tw.getFullYear ();
+            var hari= tw.getDay ();
+            var bulan= tw.getMonth ();
+            var tanggal= tw.getDate ();
+            var hariarray=new Array("Minggu,","Senin,","Selasa,","Rabu,","Kamis,","Jum'at,","Sabtu,");
+            var bulanarray=new Array("Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","Nopember","Desember");
+            document.getElementById("tanggalwaktu").innerHTML = hariarray[hari]+" "+tanggal+" "+bulanarray[bulan]+" "+tahun;
+            </script>
+            </li>
+            <li class="nav-item">
+
+                <a class="nav-link" data-widget="fullscreen" href="#" role="button" style="color: white">
                     <i class="fas fa-expand-arrows-alt"></i>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button" style="color: white">
                     <i class="fas fa-th-large"></i>
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
+                <a class="nav-link" data-toggle="dropdown" href="#" style="color: white">
                     <i class="far fa-user"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -76,20 +93,20 @@
   <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-info elevation-4">
         <!-- Brand Logo -->
-        <a href="{{ route('home') }}" class="brand-link">
-            <img src="{{ asset('backend/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light">Anggrek Singosari</span>
+        <a href="{{ route('home') }}" class="brand-link" style="background-color: #98ddca">
+            <img src="{{ asset('backend/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8" >
+            <span class="brand-text font-weight-light" style="color: teal">Anggrek Singosari</span>
         </a>
 
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex" >
                 <div class="image">
-                    <img src="{{ asset('backend/dist/img/user2-160x160.jpg') }} " class="img-circle elevation-2" alt="User Image">
+                    <img src="/image/{{ Auth::user()->pegawai->foto }}" class="img-circle elevation-3" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">{{ Auth::user()->pegawai->name }}</a>
+                    <a style="color: teal" class="d-block">{{ Auth::user()->pegawai->name }}</a>
                 </div>
             </div>
 
