@@ -32,16 +32,16 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
   <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-teal">
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
-            {{-- <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Home</a>
+             <li class="nav-item d-none d-sm-inline-block">
+                <a href="{{ route('home') }}" class="nav-link">Home</a>
             </li>
-            <li class="nav-item d-none d-sm-inline-block">
+            {{--<li class="nav-item d-none d-sm-inline-block">
                 <a href="#" class="nav-link">Contact</a>
             </li> --}}
         </ul>
@@ -74,7 +74,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <aside class="main-sidebar sidebar-info elevation-4">
         <!-- Brand Logo -->
         <a href="{{ route('home') }}" class="brand-link">
             <img src="{{ asset('backend/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
