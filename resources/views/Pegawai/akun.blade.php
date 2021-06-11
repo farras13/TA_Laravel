@@ -56,8 +56,8 @@
                   <thead>
                   <tr>
                     <th>No</th>
+                    <th>Nama Pegawai</th>
                     <th>Username</th>
-                    <th>Password</th>
                     <th>Role</th>
                     <th>#</th>
                   </tr>
@@ -66,8 +66,8 @@
                     @foreach($data as $per)
                         <tr>
                             <td> {{ $per->id }} </td>
+                            <td> {{ $per->pegawai->name }} </td>
                             <td> {{ $per->username }} </td>
-                            <td> {{ $per->password }} </td>
                             <td>
                                 @if($per->pegawai->role == 0)
                                     Petugas Kebun
@@ -89,8 +89,8 @@
                   <tfoot>
                   <tr>
                     <th>No</th>
+                    <th>Nama Pegawai</th>
                     <th>Username</th>
-                    <th>Password</th>
                     <th>Role</th>
                     <th>#</th>
                   </tr>

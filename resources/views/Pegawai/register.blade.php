@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for=""><strong>Password</strong></label>
-                                    <input type="password" name="password" class="form-control" required>
+                                    <input type="password" name="password" class="form-control" minlength="8" required>
                                 </div>
                             </div>
                             <div class="card-footer">

@@ -36,7 +36,7 @@
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                <a class="nav-link" style="color: white" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
              <li class="nav-item d-none d-sm-inline-block">
                 <a href="{{ route('home') }}" class="nav-link" style="color: white">Home</a>
@@ -64,17 +64,7 @@
             document.getElementById("tanggalwaktu").innerHTML = hariarray[hari]+" "+tanggal+" "+bulanarray[bulan]+" "+tahun;
             </script>
             </li>
-            <li class="nav-item">
 
-                <a class="nav-link" data-widget="fullscreen" href="#" role="button" style="color: white">
-                    <i class="fas fa-expand-arrows-alt"></i>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button" style="color: white">
-                    <i class="fas fa-th-large"></i>
-                </a>
-            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#" style="color: white">
                     <i class="far fa-user"></i>
@@ -91,11 +81,11 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-info elevation-4">
+    <aside class="main-sidebar sidebar-info elevation-4" style="background: white;">
         <!-- Brand Logo -->
         <a href="{{ route('home') }}" class="brand-link" style="background-color: #98ddca">
             <img src="{{ asset('backend/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8" >
-            <span class="brand-text font-weight-light" style="color: teal">Anggrek Singosari</span>
+            <span class="brand-text font-weight-light" style="color: teal;">Anggrek Singosari</span>
         </a>
 
         <!-- Sidebar -->
@@ -128,6 +118,12 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
+                                <a href="{{ route('jabatan') }}" class="nav-link">
+                                    <i class="nav-icon far fa-circle" aria-hidden="true"></i>
+                                    <p> Jabatan </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ url('Pegawai') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Data Pegawai</p>
@@ -139,6 +135,15 @@
                                     <p>Akun</p>
                                 </a>
                             </li>
+                            @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 3)
+                                <li class="nav-item">
+                                    <a href="{{ route('absensi') }}" class="nav-link">
+                                        <i class="nav-icon far fa-circle" aria-hidden="true"></i>
+                                        <p> Absensi </p>
+                                    </a>
+                                </li>
+                            @endif
+
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -147,22 +152,15 @@
                             <p> Penggajian </p>
                         </a>
                     </li>
+
+                    @endif
+                    @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 3)
                     <li class="nav-item">
-                        <a href="{{ route('jabatan') }}" class="nav-link">
-                            <i class="nav-icon fas fa-money-check" aria-hidden="true"></i>
-                            <p> Jabatan </p>
+                        <a href="{{ route('gen') }}" class="nav-link">
+                            <i class="fas fa-money-check nav-icon"></i>
+                            <p>Gen</p>
                         </a>
                     </li>
-                    @endif
-                    @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 3)
-                        <li class="nav-item">
-                            <a href="{{ route('absensi') }}" class="nav-link">
-                                <i class="nav-icon fas fa-money-check" aria-hidden="true"></i>
-                                <p> Absensi </p>
-                            </a>
-                        </li>
-                    @endif
-                    @if (Auth::user()->pegawai->role == 2 || Auth::user()->pegawai->role == 3)
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon far fa-plus-square"></i>
@@ -170,24 +168,10 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p> Internal  <i class="fas fa-angle-left right"></i> </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('gen') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Gen</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
                                 <a href="{{ route('gudang') }}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Gudang</p>
                                 </a>
-                                </li>
-                            </ul>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
@@ -214,6 +198,7 @@
                             </li>
                         </ul>
                     </li>
+
                     @endif
 
                     <li class="nav-header">Persilangan</li>

@@ -170,7 +170,7 @@ class PegawaiController extends Controller
 
     public function addJ (Request $request)
     {
-        pegawai::create([
+        Jabatan::create([
             'jabatan' => ucwords(strtolower($request->nj)),
             'gaji_pokok' => $request->gp,
         ]);
