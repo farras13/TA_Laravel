@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V1</title>
+	<title>Login | Kebun Anggrek Singosari</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -34,7 +34,7 @@
 
 				<form class="login100-form validate-form" action="{{ route('login') }}" method="post">
                     @if (Session::has('error'))
-                    <div class="alert alert-danger alert-dismissible">
+                    <div class="alert alert-success alert-dismissible" style="color: lightseagreen">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -42,7 +42,7 @@
                     </div>
                     @endif
                     @if(session('errors'))
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <div class="alert alert-success alert-dismissible fade show" style="color: lightseagreen" role="alert">
                             Something it's wrong:
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">×</span>

@@ -36,7 +36,7 @@
         <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" style="color: white" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i style="color: white" class="fas fa-bars"></i></a>
             </li>
              <li class="nav-item d-none d-sm-inline-block">
                 <a href="{{ route('home') }}" class="nav-link" style="color: white">Home</a>
@@ -89,9 +89,9 @@
         </a>
 
         <!-- Sidebar -->
-        <div class="sidebar">
+        <div class="sidebar" style="background-color: white">
             <!-- Sidebar user panel (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex" >
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
                     <img src="/image/{{ Auth::user()->pegawai->foto }}" class="img-circle elevation-3" alt="User Image">
                 </div>
